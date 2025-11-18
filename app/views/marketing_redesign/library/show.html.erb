@@ -1,0 +1,781 @@
+<%= content_for(:page_title, t(".page_title")) %>
+
+<style>
+  .swatch-container {
+    max-width: var(--container--large);
+    margin: 0 auto;
+    padding: var(--space--large);
+    font-family: var(--font-family--body);
+  }
+
+  .swatch-section {
+    margin-bottom: var(--space--xx-large);
+  }
+
+  .swatch-section h2 {
+    font-size: var(--font-size--subheader);
+    font-weight: var(--font-weight--bold);
+    margin-bottom: var(--space--medium);
+    color: var(--color--text-dark);
+  }
+
+  .swatch-section h3 {
+    font-size: var(--font-size--section-title);
+    font-weight: var(--font-weight--bold);
+    margin-top: var(--space--large);
+    margin-bottom: var(--space--base);
+    color: var(--color--text);
+  }
+
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space--base);
+    margin-bottom: var(--space--large);
+  }
+
+  .color-swatch {
+    border: var(--border--base);
+    border-radius: var(--border-radius--base);
+    overflow: hidden;
+  }
+
+  .color-swatch-color {
+    height: 100px;
+    width: 100%;
+  }
+
+  .color-swatch-info {
+    padding: var(--space--small);
+    background: var(--color--background-light);
+  }
+
+  .color-swatch-name {
+    font-size: var(--font-size--small);
+    font-weight: var(--font-weight--bold);
+    margin-bottom: var(--space--xx-small);
+  }
+
+  .color-swatch-value {
+    font-size: var(--font-size--small);
+    color: var(--color--gray-500);
+    font-family: monospace;
+  }
+
+  .typography-sample {
+    margin-bottom: var(--space--base);
+    padding: var(--space--small);
+    border: var(--border--light);
+    border-radius: var(--border-radius--small);
+  }
+
+  .typography-label {
+    font-size: var(--font-size--small);
+    color: var(--color--gray-500);
+    margin-bottom: var(--space--xx-small);
+  }
+
+  .border-samples {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--space--base);
+  }
+
+  .border-sample {
+    padding: var(--space--base);
+    background: var(--color--background-light);
+    text-align: center;
+  }
+
+  .spacing-samples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space--base);
+    align-items: flex-end;
+  }
+
+  .spacing-sample {
+    text-align: center;
+  }
+
+  .spacing-box {
+    background: var(--color--primary-base);
+    margin-bottom: var(--space--xx-small);
+  }
+
+  .spacing-label {
+    font-size: var(--font-size--small);
+    color: var(--color--gray-500);
+  }
+</style>
+
+<div class="swatch-container">
+  <h1 style="font-size: var(--font-size--display); font-weight: var(--font-weight--bold); margin-bottom: var(--space--x-large); color: var(--color--text-dark);">CSS Variables Swatch Test</h1>
+
+  <!-- Base Colors -->
+  <section class="swatch-section">
+    <h2>Base Colors</h2>
+
+    <h3>Aqua</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--aqua-100);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Aqua 100</div>
+          <div class="color-swatch-value">--color--aqua-100</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--aqua-500);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Aqua 500</div>
+          <div class="color-swatch-value">--color--aqua-500</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--aqua-900);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Aqua 900</div>
+          <div class="color-swatch-value">--color--aqua-900</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Black</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--black-500);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Black 500</div>
+          <div class="color-swatch-value">--color--black-500</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Blue</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--blue-100);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Blue 100</div>
+          <div class="color-swatch-value">--color--blue-100</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--blue-500);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Blue 500</div>
+          <div class="color-swatch-value">--color--blue-500</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--blue-900);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Blue 900</div>
+          <div class="color-swatch-value">--color--blue-900</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Gray</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--gray-100);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Gray 100</div>
+          <div class="color-swatch-value">--color--gray-100</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--gray-200);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Gray 200</div>
+          <div class="color-swatch-value">--color--gray-200</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--gray-300);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Gray 300</div>
+          <div class="color-swatch-value">--color--gray-300</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--gray-400);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Gray 400</div>
+          <div class="color-swatch-value">--color--gray-400</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--gray-500);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Gray 500</div>
+          <div class="color-swatch-value">--color--gray-500</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--gray-600);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Gray 600</div>
+          <div class="color-swatch-value">--color--gray-600</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--gray-700);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Gray 700</div>
+          <div class="color-swatch-value">--color--gray-700</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Green</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--green-100);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Green 100</div>
+          <div class="color-swatch-value">--color--green-100</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--green-500);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Green 500</div>
+          <div class="color-swatch-value">--color--green-500</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--green-900);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Green 900</div>
+          <div class="color-swatch-value">--color--green-900</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Orange</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--orange-100);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Orange 100</div>
+          <div class="color-swatch-value">--color--orange-100</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--orange-500);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Orange 500</div>
+          <div class="color-swatch-value">--color--orange-500</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--orange-900);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Orange 900</div>
+          <div class="color-swatch-value">--color--orange-900</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Red</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--red-100);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Red 100</div>
+          <div class="color-swatch-value">--color--red-100</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--red-500);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Red 500</div>
+          <div class="color-swatch-value">--color--red-500</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--red-900);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Red 900</div>
+          <div class="color-swatch-value">--color--red-900</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>White</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--white-500); border: 1px solid var(--color--gray-300);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">White 500</div>
+          <div class="color-swatch-value">--color--white-500</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Semantic Colors -->
+  <section class="swatch-section">
+    <h2>Semantic Colors</h2>
+
+    <h3>Primary</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--primary-light);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Primary Light</div>
+          <div class="color-swatch-value">--color--primary-light</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--primary-base);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Primary Base</div>
+          <div class="color-swatch-value">--color--primary-base</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--primary-dark);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Primary Dark</div>
+          <div class="color-swatch-value">--color--primary-dark</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Accent</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--accent-light);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Accent Light</div>
+          <div class="color-swatch-value">--color--accent-light</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--accent-base);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Accent Base</div>
+          <div class="color-swatch-value">--color--accent-base</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--accent-dark);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Accent Dark</div>
+          <div class="color-swatch-value">--color--accent-dark</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Background</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--background-light); border: 1px solid var(--color--gray-300);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Background Light</div>
+          <div class="color-swatch-value">--color--background-light</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--background-base);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Background Base</div>
+          <div class="color-swatch-value">--color--background-base</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--background-dark);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Background Dark</div>
+          <div class="color-swatch-value">--color--background-dark</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>UI States - Error</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--ui-error-light);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Error Light</div>
+          <div class="color-swatch-value">--color--ui-error-light</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--ui-error-base);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Error Base</div>
+          <div class="color-swatch-value">--color--ui-error-base</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--ui-error-dark);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Error Dark</div>
+          <div class="color-swatch-value">--color--ui-error-dark</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>UI States - Success</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--ui-success-light);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Success Light</div>
+          <div class="color-swatch-value">--color--ui-success-light</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--ui-success-base);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Success Base</div>
+          <div class="color-swatch-value">--color--ui-success-base</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--ui-success-dark);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Success Dark</div>
+          <div class="color-swatch-value">--color--ui-success-dark</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>UI States - Info</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--ui-info-light);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Info Light</div>
+          <div class="color-swatch-value">--color--ui-info-light</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--ui-info-base);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Info Base</div>
+          <div class="color-swatch-value">--color--ui-info-base</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--ui-info-dark);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Info Dark</div>
+          <div class="color-swatch-value">--color--ui-info-dark</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>UI States - Warning</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--ui-warning-light);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Warning Light</div>
+          <div class="color-swatch-value">--color--ui-warning-light</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--ui-warning-base);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Warning Base</div>
+          <div class="color-swatch-value">--color--ui-warning-base</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--ui-warning-dark);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Warning Dark</div>
+          <div class="color-swatch-value">--color--ui-warning-dark</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Text & Links</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--text);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Text</div>
+          <div class="color-swatch-value">--color--text</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--text-dark);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Text Dark</div>
+          <div class="color-swatch-value">--color--text-dark</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--text-inverse); border: 1px solid var(--color--gray-300);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Text Inverse</div>
+          <div class="color-swatch-value">--color--text-inverse</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--link);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Link</div>
+          <div class="color-swatch-value">--color--link</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-color" style="background-color: var(--color--link-hover);"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Link Hover</div>
+          <div class="color-swatch-value">--color--link-hover</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Typography -->
+  <section class="swatch-section">
+    <h2>Typography</h2>
+
+    <h3>Font Sizes</h3>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--50 (0.875rem)</div>
+      <div style="font-size: var(--font-size--50);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--100 (1rem)</div>
+      <div style="font-size: var(--font-size--100);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--200 (1.125rem)</div>
+      <div style="font-size: var(--font-size--200);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--300 (1.25rem)</div>
+      <div style="font-size: var(--font-size--300);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--400 (1.5rem)</div>
+      <div style="font-size: var(--font-size--400);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--500 (2rem)</div>
+      <div style="font-size: var(--font-size--500);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--600 (2.5rem)</div>
+      <div style="font-size: var(--font-size--600);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--700 (3.25rem)</div>
+      <div style="font-size: var(--font-size--700);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--800 (4rem)</div>
+      <div style="font-size: var(--font-size--800);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+
+    <h3>Semantic Font Sizes</h3>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--small</div>
+      <div style="font-size: var(--font-size--small);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--body</div>
+      <div style="font-size: var(--font-size--body);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--ui</div>
+      <div style="font-size: var(--font-size--ui);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--section-title</div>
+      <div style="font-size: var(--font-size--section-title);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--subheader</div>
+      <div style="font-size: var(--font-size--subheader);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--header</div>
+      <div style="font-size: var(--font-size--header);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-size--display</div>
+      <div style="font-size: var(--font-size--display);">The quick brown fox</div>
+    </div>
+
+    <h3>Font Weights</h3>
+    <div class="typography-sample">
+      <div class="typography-label">--font-weight--normal (400)</div>
+      <div style="font-weight: var(--font-weight--normal); font-size: var(--font-size--300);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--font-weight--bold (700)</div>
+      <div style="font-weight: var(--font-weight--bold); font-size: var(--font-size--300);">The quick brown fox jumps over the lazy dog</div>
+    </div>
+
+    <h3>Line Heights</h3>
+    <div class="typography-sample">
+      <div class="typography-label">--line-height--tight (1.2)</div>
+      <div style="line-height: var(--line-height--tight); font-size: var(--font-size--300); border: 1px solid var(--color--gray-300); padding: var(--space--small);">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </div>
+    </div>
+    <div class="typography-sample">
+      <div class="typography-label">--line-height--base (1.5)</div>
+      <div style="line-height: var(--line-height--base); font-size: var(--font-size--300); border: 1px solid var(--color--gray-300); padding: var(--space--small);">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </div>
+    </div>
+  </section>
+
+  <!-- Border Radius -->
+  <section class="swatch-section">
+    <h2>Border Radius</h2>
+    <div class="border-samples">
+      <div class="border-sample" style="border-radius: var(--border-radius--small); border: var(--border--dark);">
+        <strong>Small</strong><br>
+        --border-radius--small<br>
+        (0.25rem)
+      </div>
+      <div class="border-sample" style="border-radius: var(--border-radius--base); border: var(--border--dark);">
+        <strong>Base</strong><br>
+        --border-radius--base<br>
+        (0.5rem)
+      </div>
+      <div class="border-sample" style="border-radius: var(--border-radius--large); border: var(--border--dark);">
+        <strong>Large</strong><br>
+        --border-radius--large<br>
+        (1.5rem)
+      </div>
+      <div class="border-sample" style="border-radius: var(--border-radius--pill); border: var(--border--dark);">
+        <strong>Pill</strong><br>
+        --border-radius--pill<br>
+        (4rem)
+      </div>
+      <div class="border-sample" style="width: 120px; height: 120px; border-radius: var(--border-radius--circle); border: var(--border--dark); display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <strong>Circle</strong><br>
+        --border-radius--circle<br>
+        (100%)
+      </div>
+    </div>
+  </section>
+
+  <!-- Borders -->
+  <section class="swatch-section">
+    <h2>Borders</h2>
+    <div class="border-samples">
+      <div class="border-sample" style="border: var(--border--base);">
+        <strong>Base Border</strong><br>
+        --border--base
+      </div>
+      <div class="border-sample" style="border: var(--border--light);">
+        <strong>Light Border</strong><br>
+        --border--light
+      </div>
+      <div class="border-sample" style="border: var(--border--dark);">
+        <strong>Dark Border</strong><br>
+        --border--dark
+      </div>
+      <div class="border-sample" style="border-width: var(--border-width--base); border-style: solid; border-color: var(--color--gray-500);">
+        <strong>Base Width</strong><br>
+        --border-width--base<br>
+        (1px)
+      </div>
+      <div class="border-sample" style="border-width: var(--border-width--thick); border-style: solid; border-color: var(--color--gray-500);">
+        <strong>Thick Width</strong><br>
+        --border-width--thick<br>
+        (4px)
+      </div>
+    </div>
+  </section>
+
+  <!-- Spacing -->
+  <section class="swatch-section">
+    <h2>Spacing</h2>
+    <div class="spacing-samples">
+      <div class="spacing-sample">
+        <div class="spacing-box" style="width: var(--space--xx-small); height: 50px;"></div>
+        <div class="spacing-label">xx-small<br>0.25rem</div>
+      </div>
+      <div class="spacing-sample">
+        <div class="spacing-box" style="width: var(--space--x-small); height: 50px;"></div>
+        <div class="spacing-label">x-small<br>0.5rem</div>
+      </div>
+      <div class="spacing-sample">
+        <div class="spacing-box" style="width: var(--space--small); height: 50px;"></div>
+        <div class="spacing-label">small<br>0.75rem</div>
+      </div>
+      <div class="spacing-sample">
+        <div class="spacing-box" style="width: var(--space--base); height: 50px;"></div>
+        <div class="spacing-label">base<br>1rem</div>
+      </div>
+      <div class="spacing-sample">
+        <div class="spacing-box" style="width: var(--space--medium); height: 50px;"></div>
+        <div class="spacing-label">medium<br>1.5rem</div>
+      </div>
+      <div class="spacing-sample">
+        <div class="spacing-box" style="width: var(--space--large); height: 50px;"></div>
+        <div class="spacing-label">large<br>2rem</div>
+      </div>
+      <div class="spacing-sample">
+        <div class="spacing-box" style="width: var(--space--x-large); height: 50px;"></div>
+        <div class="spacing-label">x-large<br>3rem</div>
+      </div>
+      <div class="spacing-sample">
+        <div class="spacing-box" style="width: var(--space--xx-large); height: 50px;"></div>
+        <div class="spacing-label">xx-large<br>4rem</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Container Widths -->
+  <section class="swatch-section">
+    <h2>Container Widths</h2>
+    <div style="margin-bottom: var(--space--base);">
+      <div style="background: var(--color--primary-light); padding: var(--space--base); max-width: var(--container--base); border: var(--border--dark);">
+        <strong>Base Container</strong> - --container--base (50rem / 800px)
+      </div>
+    </div>
+    <div>
+      <div style="background: var(--color--accent-light); padding: var(--space--base); max-width: var(--container--large); border: var(--border--dark);">
+        <strong>Large Container</strong> - --container--large (85rem / 1360px)
+      </div>
+    </div>
+  </section>
+
+  <!-- Misc -->
+  <section class="swatch-section">
+    <h2>Miscellaneous</h2>
+
+    <h3>Transitions</h3>
+    <div style="margin-bottom: var(--space--base);">
+      <div style="background: var(--color--primary-base); color: var(--color--text-inverse); padding: var(--space--base); border-radius: var(--border-radius--base); transition: all var(--transition-duration--base) var(--transition-timing--base); cursor: pointer; display: inline-block;" onmouseover="this.style.background='var(--color--primary-dark)'; this.style.transform='scale(1.05)';" onmouseout="this.style.background='var(--color--primary-base)'; this.style.transform='scale(1)';">
+        Hover me to see transition (0.2s ease-in-out)
+      </div>
+    </div>
+
+    <h3>Z-Index Layers</h3>
+    <div style="position: relative; height: 200px; background: var(--color--background-base); border: var(--border--base); border-radius: var(--border-radius--base); padding: var(--space--base);">
+      <div style="position: absolute; top: 80px; left: 20px; background: var(--color--gray-300); padding: var(--space--base); border-radius: var(--border-radius--small); z-index: var(--z-index--basement);">
+        Basement (-999999)
+      </div>
+      <div style="position: absolute; top: 60px; left: 60px; background: var(--color--blue-100); padding: var(--space--base); border-radius: var(--border-radius--small); z-index: var(--z-index--base);">
+        Base (1)
+      </div>
+      <div style="position: absolute; top: 40px; left: 100px; background: var(--color--green-100); padding: var(--space--base); border-radius: var(--border-radius--small); z-index: var(--z-index--layout);">
+        Layout (1000)
+      </div>
+      <div style="position: absolute; top: 20px; left: 140px; background: var(--color--orange-100); padding: var(--space--base); border-radius: var(--border-radius--small); z-index: var(--z-index--modal);">
+        Modal (4000)
+      </div>
+      <div style="position: absolute; top: 0px; left: 180px; background: var(--color--red-100); padding: var(--space--base); border-radius: var(--border-radius--small); z-index: var(--z-index--ceiling);">
+        Ceiling (999999)
+      </div>
+    </div>
+  </section>
+</div>
