@@ -7,7 +7,7 @@ dialog {
   gap: var(--space--base);
   max-width: var(--container--base);
   width: calc(100% - var(--space--base));
-  
+
   &[open] {
     display: flex;
   }
@@ -30,17 +30,15 @@ dialog.slide-in {
   border-bottom-right-radius: 0;
   margin-bottom: 0;
   transform: translateY(100%);
-  transition:
-    calc(var(--transition-duration--base) * 2) var(--transition-timing--base)
-      transform,
+  transition: calc(var(--transition-duration--base) * 2)
+      var(--transition-timing--base) transform,
     display var(--transition-duration--base) var(--transition-timing--base)
       allow-discrete,
     overlay var(--transition-duration--base) var(--transition-timing--base)
       allow-discrete;
 
   &::backdrop {
-    transition:
-      overlay var(--transition-duration--base) allow-discrete,
+    transition: overlay var(--transition-duration--base) allow-discrete,
       display var(--transition-duration--base) allow-discrete,
       var(--transition-duration--base) background-color
         var(--transition-timing--base);

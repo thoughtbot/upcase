@@ -238,3 +238,6 @@ en:
     contacts:
       new:
         page_title: Contact Us
+    library:
+      show:
+        page_title: Library
