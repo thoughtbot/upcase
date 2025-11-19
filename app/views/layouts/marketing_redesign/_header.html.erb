@@ -1,0 +1,33 @@
+<header>
+  <%= t("layouts.app_name") %>
+  <%= t("layouts.app_name_subtitle") %>
+
+  <nav>
+    <ul>
+      <li>
+        <%= link_to(
+          t(".nav.links.root"),
+          {controller: "/marketing_redesign/home", action: :show}
+        ) %>
+      </li>
+      <li>
+        <%= link_to(
+          t(".nav.links.about_show"),
+          {controller: "/marketing_redesign/about", action: :show}
+        ) %>
+      </li>
+      <li>
+        <%= link_to(
+          t(".nav.links.root_marketing_show"),
+          {controller: "/marketing", action: :show}
+        ) %>
+      </li>
+      <li>
+        <%= link_to(
+          t(".nav.links.contacts_new"),
+          {controller: "/marketing_redesign/contacts", action: :new}
+        ) %>
+      </li>
+    </ul>
+  </nav>
+</header>

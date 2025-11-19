@@ -67,6 +67,7 @@ en:
   github_logo: GitHub
   layouts:
     app_name: Upcase
+    app_name_subtitle: by thoughtbot
     fallback_page_title: Upcase by thoughtbot | Learn Web Development Online
     marketing:
       description: Join Upcase by thoughtbot. Explore video tutorials,
@@ -76,7 +77,22 @@ en:
       description: Join Upcase by thoughtbot. Explore video tutorials,
         exercises, forum discussions and the community you need to grow as a web
         developer.
+      header:
+        nav:
+          links:
+            root: Home
+            about_show: About
+            root_marketing_show: Legacy Content
+            contacts_new: Level Up Your Team!
+      footer:
+        links_heading: Links
+        resources_heading: Resources
+        links:
+          thoughtbot_home: thoughtbot Website
+          root_pages_show_privacy: Privacy Policy
+          root_pages_show_terms: Terms of Service
     thoughtbot: thoughtbot
+    copyright: © 2012–%{current_year} thoughtbot, inc.
   licenses:
     flashes:
       error: You're already subscribed to Upcase!
