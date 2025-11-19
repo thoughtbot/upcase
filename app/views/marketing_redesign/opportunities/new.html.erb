@@ -5,20 +5,50 @@
   url: {action: :create},
   method: :post
 ) do |f| %>
-  <%= f.label :contact_first_name, t(".attributes.contact_first_name") %>
-  <%= f.text_field :contact_first_name, autocomplete: "given-name" %>
+  <%= f.label :contact_first_name do %>
+    <span><%= t(".attributes.contact_first_name") %></span>
+    <%= f.text_field(
+      :contact_first_name,
+      autocomplete: "given-name",
+      placeholder: t(".attributes.contact_first_name")
+    ) %>
+  <% end %>
 
-  <%= f.label :contact_last_name, t(".attributes.contact_last_name") %>
-  <%= f.text_field :contact_last_name, autocomplete: "family-name" %>
+  <%= f.label :contact_last_name do %>
+    <span><%= t(".attributes.contact_last_name") %></span>
+    <%= f.text_field(
+      :contact_last_name,
+      autocomplete: "family-name",
+      placeholder: t(".attributes.contact_last_name")
+    ) %>
+  <% end %>
 
-  <%= f.label :email, t(".attributes.email") %>
-  <%= f.email_field :email, autocomplete: "email" %>
+  <%= f.label :email do %>
+    <span><%= t(".attributes.email") %></span>
+    <%= f.email_field(
+      :email,
+      autocomplete: "email",
+      placeholder: t(".attributes.email")
+    ) %>
+  <% end %>
 
-  <%= f.label :company_name, t(".attributes.company_name") %>
-  <%= f.text_field :company_name, autocomplete: "organization" %>
+  <%= f.label :company_name do %>
+    <span><%= t(".attributes.company_name") %></span>
+    <%= f.text_field(
+      :company_name,
+      autocomplete: "organization",
+      placeholder: t(".attributes.company_name")
+    ) %>
+  <% end %>
 
-  <%= f.label :contact_job_title, t(".attributes.contact_job_title") %>
-  <%= f.text_field :contact_job_title, autocomplete: "organization-title" %>
+  <%= f.label :contact_job_title do %>
+    <span><%= t(".attributes.contact_job_title") %></span>
+    <%= f.text_field(
+      :contact_job_title,
+      autocomplete: "organization-title",
+      placeholder: t(".attributes.contact_job_title")
+    ) %>
+  <% end %>
 
   <%= f.submit t(".submit") %>
 <% end %>
