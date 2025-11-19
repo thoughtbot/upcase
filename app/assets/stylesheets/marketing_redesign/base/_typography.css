@@ -33,7 +33,7 @@ a {
 
 label {
   font-size: var(--font-size--ui);
-  font-weight: var(--font-weight--bold);
+  font-weight: var(--font-weight--base);
   text-align: left;
 }
 
