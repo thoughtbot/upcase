@@ -1,3 +1,24 @@
 <%= content_for(:page_title, t(".page_title")) %>
 
-Hello world
+<%= form_with(
+  scope: :opportunity,
+  url: {action: :create},
+  method: :post
+) do |f| %>
+  <%= f.label :contact_first_name, t(".attributes.contact_first_name") %>
+  <%= f.text_field :contact_first_name, autocomplete: "given-name" %>
+
+  <%= f.label :contact_last_name, t(".attributes.contact_last_name") %>
+  <%= f.text_field :contact_last_name, autocomplete: "family-name" %>
+
+  <%= f.label :email, t(".attributes.email") %>
+  <%= f.email_field :email, autocomplete: "email" %>
+
+  <%= f.label :company_name, t(".attributes.company_name") %>
+  <%= f.text_field :company_name, autocomplete: "organization" %>
+
+  <%= f.label :contact_job_title, t(".attributes.contact_job_title") %>
+  <%= f.text_field :contact_job_title, autocomplete: "organization-title" %>
+
+  <%= f.submit t(".submit") %>
+<% end %>
