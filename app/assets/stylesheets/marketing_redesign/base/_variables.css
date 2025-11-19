@@ -59,7 +59,7 @@
   --color--ui-warning-dark: var(--color--orange-900);
 
   --color--text: var(--color--gray-600);
-  --color--text-dark: var(--color-gray-700);
+  --color--text-dark: var(--color--gray-700);
   --color--text-inverse: var(--color--white-500);
   --color--link: var(--color--primary-base);
   --color--link-hover: var(--color--primary-dark);
@@ -84,8 +84,9 @@
   --font-size--header: var(--font-size--600);
   --font-size--display: var(--font-size--800);
 
-  --font-weight--normal: 400;
-  --font-weight--bold: 700;
+  --font-weight--normal: 300;
+  --font-weight--bold: 500;
+  --font-weight--extrabold: 700;
 
   --font-family--body: "Manrope", system-ui, "Segoe UI", Roboto, sans-serif;
   --font-family--heading: "Manrope", system-ui, "Segoe UI", Roboto, sans-serif;

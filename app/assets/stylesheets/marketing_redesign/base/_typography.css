@@ -11,24 +11,20 @@ body {
   line-height: var(--line-height--base);
 }
 
-:where(
-  h1,
-  h2,
-  h3,
-  h4,
-  strong
-) {
+:where(h1, h2, h3, h4, strong) {
   font-weight: var(--font-weight--bold);
 }
 
 h1 {
   text-wrap: balance;
   text-wrap: pretty;
+  font-size: var(--font-size--700);
 }
 
 a {
   color: var(--color--link);
-  transition: var(--transition-duration--base) color var(--transition-timing--base);
+  transition: var(--transition-duration--base) color
+    var(--transition-timing--base);
 
   &:hover {
     color: var(--color--link-hover);
