@@ -19,8 +19,10 @@
   </head>
 
   <body class="<%= body_class %>">
+    <%= render "layouts/marketing_redesign/header" %>
     <%= render "shared/flashes" %>
     <%= yield %>
+    <%= render "layouts/marketing_redesign/footer" %>
   </body>
 
   <%= render "application/visitor_analytics" %>
