@@ -1,6 +1,6 @@
 module MarketingRedesign
   class OpportunitiesController < BaseController
-    HUB_CONVERSION_POINT = "Upcase: Contact Us"
+    HUB_CONVERSION_POINT = "Upcase: Contact Us".freeze
     HUB_PROJECT_TYPE = "Team Training / Mentoring".freeze
 
     def new
