@@ -4,8 +4,8 @@
   border-radius: var(--border-radius--base);
   cursor: pointer;
   display: flex;
-  font-weight: var(--font-weight--bold);
   font-size: var(--font-size--ui);
+  font-weight: var(--font-weight--extrabold);
   gap: var(--space--x-small);
   justify-content: center;
   line-height: 1;
@@ -24,23 +24,25 @@
 
 .button--primary {
   background-color: var(--color--primary-base);
-  color: var(--color--text-inverse);
+  border-color: var(--color--accent-base);
+  color: var(--color--text-dark);
 
   &:hover,
   &:focus-visible {
-    background-color: var(--color--primary-dark);
+    background-color: var(--color--primary-light);
+    color: var(--color--text);
   }
 }
 
 .button--secondary {
   background-color: var(--color--background-base);
-  border-color: var(--color--primary-base);
+  border: var(--border--light);
   color: var(--color--text);
 
   &:hover,
   &:focus-visible {
-    background-color: var(--color--primary-dark);
-    color: var(--color--text-inverse);
+    background-color: var(--color--background-dark);
+    color: var(--color--text-dark);
   }
 }
 

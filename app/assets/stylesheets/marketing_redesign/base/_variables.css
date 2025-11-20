@@ -59,13 +59,14 @@
   --color--ui-warning-dark: var(--color--orange-900);
 
   --color--text: var(--color--gray-600);
-  --color--text-dark: var(--color-gray-700);
+  --color--text-dark: var(--color--gray-700);
   --color--text-inverse: var(--color--white-500);
   --color--link: var(--color--primary-base);
   --color--link-hover: var(--color--primary-dark);
 
   /* Typography */
 
+  --font-size--10: 0.75rem;
   --font-size--50: 0.875rem;
   --font-size--100: 1rem;
   --font-size--200: 1.125rem;
@@ -78,14 +79,16 @@
 
   --font-size--body: var(--font-size--100);
   --font-size--small: var(--font-size--50);
+  --font-size--x-small: var(--font-size--10);
   --font-size--ui: var(--font-size--100);
   --font-size--section-title: var(--font-size--300);
   --font-size--subheader: var(--font-size--400);
   --font-size--header: var(--font-size--600);
   --font-size--display: var(--font-size--800);
 
-  --font-weight--normal: 400;
-  --font-weight--bold: 700;
+  --font-weight--normal: 300;
+  --font-weight--bold: 500;
+  --font-weight--extrabold: 700;
 
   --font-family--body: "Manrope", system-ui, "Segoe UI", Roboto, sans-serif;
   --font-family--heading: "Manrope", system-ui, "Segoe UI", Roboto, sans-serif;
@@ -101,7 +104,7 @@
   --border-radius--circle: 100%;
 
   --border-width--base: 1px;
-  --border-width--thick: 4px;
+  --border-width--thick: 3px;
 
   --border--base: var(--border-width--base) solid var(--color--primary-light);
   --border--light: var(--border-width--base) solid var(--color--gray-500);
