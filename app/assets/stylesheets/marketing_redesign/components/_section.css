@@ -44,3 +44,8 @@
 .test {
   grid-column: col-start 3 / span 3;
 }
+
+.logo {
+  opacity: 0.8;
+  width: min-content;
+}
