@@ -8,8 +8,9 @@ section.section {
   padding: var(--space--large) 0;
 }
 
-section.hero .section-title {
+.hero .section-title {
   font-size: var(--font-size--display);
+  font-weight: var(--font-weight--bold);
 }
 
 .full {

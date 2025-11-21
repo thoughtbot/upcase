@@ -1,6 +1,6 @@
 html {
-  font-size: 100%;
   -webkit-font-smoothing: antialiased;
+  font-size: 100%;
 }
 
 body {
@@ -12,18 +12,51 @@ body {
 }
 
 :where(h1, h2, h3, h4, strong) {
-  font-weight: var(--font-weight--bold);
+  font-weight: var(--font-weight--extrabold);
 }
 
 h1 {
-  text-wrap: balance;
-  text-wrap: pretty;
   font-size: var(--font-size--700);
   margin: var(--space--large) 0 var(--space--base);
+  text-wrap: balance;
+  text-wrap: pretty;
+}
+
+h2 {
+  font-size: var(--font-size--header);
+  margin: var(--space--medium) 0 var(--space--base);
+}
+
+h3 {
+  font-size: var(--font-size--500);
+  margin: var(--space--medium) 0 var(--space--small);
+}
+
+h4 {
+  font-size: var(--font-size--400);
+  margin: var(--space--base) 0 var(--space--small);
 }
 
 p {
   margin: var(--space--small) 0 var(--space--xx-small);
+  font-size: var(--font-size--body);
+}
+
+p.text-xl {
+  font-size: var(--font-size--500);
+  margin: var(--space--base) 0 var(--space--small);
+  font-weight: var(--font-weight--bold);
+}
+
+p.text-lg {
+  font-size: var(--font-size--subheader);
+  margin: var(--space--small) 0 var(--space--xx-small);
+  font-weight: var(--font-weight--bold);
+}
+
+p.text-sm {
+  font-size: var(--font-size--small);
+  margin: var(--space--xx-small) 0 0;
 }
 
 a {
