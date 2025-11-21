@@ -1,7 +1,7 @@
 .button {
   align-items: center;
   border: var(--border-width--base) solid transparent;
-  border-radius: var(--border-radius--base);
+  border-radius: var(--border-radius--small);
   cursor: pointer;
   display: flex;
   font-size: var(--font-size--ui);

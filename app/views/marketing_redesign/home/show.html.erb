@@ -2,29 +2,130 @@
 <div class="page-content">
   <section class="section hero">
     <div class="section-header full">
-      <h1 class="section-title">Section Title</h1>
-      <p class="section-subheader">Section Title</p>
-      <a class="section-cta button button--primary" href="/contact-us"
-        >Button</a
-      >
+      <h1 class="section-title">
+        <%= t("marketing_redesign.home.show.hero_heading") %>
+      </h1>
+      <p class="section-subtitle">
+        <%= t("marketing_redesign.home.show.hero_subheading") %>
+      </p>
+      <a class="section-cta button button--primary" href="/contact-us">
+        <%= t("marketing_redesign.home.show.hero_cta") %>
+      </a>
+    </div>
+  </section>
+
+  <section class="section testimonial">
+    <div class="section-header full">
+      <h2 class="section-title">
+        <%= t("marketing_redesign.home.show.testimonials.heading") %>
+      </h2>
+    </div>
+    <q class="quote text-xl"><%= t("marketing_redesign.home.show.testimonials.quotes.patrick_cushing_quote") %></q>
+    <div class="author">
+      <div class="author-avatar"><img src="" alt=""></div>
+      <div class="author-info">
+        <p class="author-name"><strong>Patrick Cushing</strong></p>
+        <p class="author-role text-sm"><%= t("marketing_redesign.home.show.testimonials.quotes.patrick_cushing_role") %></p>
+      </div>
+    </div>
+    <div class="section-content full logo-container">
+        <%= image_tag "marketing_redesign/brand-logos/moma.png", alt: "New York City Museum of Modern Art logo", class: "logo" %>
+        <%= image_tag "marketing_redesign/brand-logos/hbr.png", alt: "Harvard Business Review logo", class: "logo" %>
+        <%= image_tag "marketing_redesign/brand-logos/planned-parenthood.png", alt: "Planned Parenthood logo", class: "logo" %>
+        <%= image_tag "marketing_redesign/brand-logos/merck.png", alt: "Merck logo", class: "logo" %>
+        <%= image_tag "marketing_redesign/brand-logos/vimeo.png", alt: "Vimeo logo", class: "logo" %>
     </div>
   </section>
 
   <section class="section">
-    <div class="section-header full">
-      <h2 class="section-title">Section Title</h2>
-      <p class="section-subheader">Section Title</p>
+    <header class="section-header full">
+      <h2 class="section-title">
+        <%= t("marketing_redesign.home.show.outcomes.heading") %>
+      </h2>
+    </header>
+    <div class="section-content outcome-container full">
+      <div class="outcome-item">
+        <h4><%= t("marketing_redesign.home.show.outcomes.velocity_heading") %></h4>
+        <p><%= t("marketing_redesign.home.show.outcomes.velocity_desc") %></p>
+      </div>
+      <div class="outcome-item">
+        <h4><%= t("marketing_redesign.home.show.outcomes.collaboration_heading") %></h4>
+        <p><%= t("marketing_redesign.home.show.outcomes.collaboration_desc") %></p>
+      </div>
+      <div class="outcome-item">
+        <h4><%= t("marketing_redesign.home.show.outcomes.documentation_heading") %></h4>
+        <p><%= t("marketing_redesign.home.show.outcomes.documentation_desc") %></p>
+      </div>
     </div>
+  </section>
+
+  <section class="section">
+    <header class="section-header full">
+      <h2 class="section-title">
+        <%= t("marketing_redesign.home.show.benefits.heading") %>
+      </h2>
+    </header>
     <div class="section-content full">
-      <p class="test">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p>
+        <div class="benefit-item">
+          <%= inline_svg_tag(
+              "marketing_redesign/benefit-check.svg",
+              class: "category-card__image",
+            )
+            %>
+          <div class="benefit-content">
+            <h4><%= t("marketing_redesign.home.show.benefits.quality") %></h4>
+            <p><%= t("marketing_redesign.home.show.benefits.quality_desc") %></p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <%= inline_svg_tag(
+              "marketing_redesign/benefit-check.svg",
+              class: "category-card__image",
+            )
+            %>
+          <div class="benefit-content">
+            <h4><%= t("marketing_redesign.home.show.benefits.schedule") %></h4>
+            <p><%= t("marketing_redesign.home.show.benefits.schedule_desc") %></p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <%= inline_svg_tag(
+              "marketing_redesign/benefit-check.svg",
+              class: "category-card__image",
+            )
+            %>
+          <div class="benefit-content">
+            <h4><%= t("marketing_redesign.home.show.benefits.experts") %></h4>
+            <p><%= t("marketing_redesign.home.show.benefits.experts_desc") %></p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <%= inline_svg_tag(
+              "marketing_redesign/benefit-check.svg",
+              class: "category-card__image",
+            )
+            %>
+          <div class="benefit-content">
+            <h4><%= t("marketing_redesign.home.show.benefits.curriculum") %></h4>
+            <p><%= t("marketing_redesign.home.show.benefits.curriculum_desc") %></p>
+          </div>
+        </div>
+        </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <header class="section-header full">
+      <h2 class="section-title">
+        <%= t("marketing_redesign.home.show.classic.heading") %>
+      </h2>
+    </header>
+    <div class="section-content full">
+      <%= link_to(
+          t("marketing_redesign.home.show.classic.cta"),
+          {controller: "/marketing", action: :show},
+          class: "section-cta button button--primary"
+        ) %>
     </div>
   </section>
 </div>

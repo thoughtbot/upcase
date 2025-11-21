@@ -1,0 +1,18 @@
+.benefit-item {
+  align-items: center;
+  background-color: var(--color--white-500);
+  border-radius: var(--border-radius--large);
+  display: flex;
+  gap: var(--space--medium);
+  max-width: var(--container--base);
+  padding: var(--space--medium);
+  width: 100%;
+}
+
+.benefit-item svg {
+  color: var(--color--primary-base);
+}
+
+.benefit-item :is(h4, p) {
+  margin: 0;
+}

@@ -11,7 +11,7 @@ en:
         menu: Mentees
         title: Mentees
     misc:
-      filter_date_format: '%D'
+      filter_date_format: "%D"
   attempts:
     flashcard_removed_from_review_queue: Flashcard removed from review queue
     flashcard_saved: Saved flashcard for review
@@ -25,12 +25,13 @@ en:
       in-progress: In Progress
       next-up: Next Up
       unstarted: Unstarted
-  deck-title-teaser: 'From: %{title}'
+  deck-title-teaser: "From: %{title}"
   decks:
     deck:
-      number_of_flashcards: '%{length} flashcards'
+      number_of_flashcards: "%{length} flashcards"
     index:
-      feature_description: Flashcards are short quizzes with questions and answers
+      feature_description:
+        Flashcards are short quizzes with questions and answers
         provided. They're mobile-friendly, and a perfect fit for commutes, waiting
         rooms, and coffee breaks. They cover the bite-sized topics, code smells, patterns,
         and anti-patterns that experts know and intermediates ought to learn.
@@ -49,12 +50,13 @@ en:
       save-for-review: Save for review
       save-for-review_html: Save for review &rarr;
     needing_review:
-      blank-state-explanation: If you encounter a card that you want to return to
+      blank-state-explanation:
+        If you encounter a card that you want to return to
         (like if its answer has interesting links that you'd like to read later),
         just click "%{save_for_review_text}" and it will appear here.
       review-queue: Saved Flashcards
     show:
-      answer: 'Answer:'
+      answer: "Answer:"
       next-flashcard: Next Flashcard
       numbered-title: Flashcard %{position} of %{total}
       return-to-results: Return to Flashcard Results
@@ -107,7 +109,8 @@ en:
       have_a_team: Have a team?
       hero_call_to_action: Start Learning Today!
       hero_tagline: Upcase by thoughtbot
-      hero_uvp_html: <strong>We're not a bootcamp, we're a finishing school.</strong>
+      hero_uvp_html:
+        <strong>We're not a bootcamp, we're a finishing school.</strong>
         Become an experienced developer and take "junior" out of your title.
       language_flash: Thanks for signing up. We will be in touch!
       page_title: Upcase by thoughtbot | Learn Web Development Online
@@ -137,12 +140,11 @@ en:
       saved_for_review: Saved for review
     show:
       back-to-all-decks: return to all decks
-      complete: 'Great job! You completed:'
+      complete: "Great job! You completed:"
       explanation: Click any flashcard to review it
-      title: '%{title}'
+      title: "%{title}"
   searches:
     show:
-      flashcard_legend_text: Flashcard
       flashcard_legend_text: Flashcard
       keywords_title: Search by keyword
       legend_title: Legend
@@ -215,7 +217,7 @@ en:
     start_for_free: Start Course for Free by Signing In with GitHub
     other_resources: Use these resources for reference and additional practice
     thoughtbot_resources: Use these thoughtbot resources first
-    validations: '%{name} developers should be able to'
+    validations: "%{name} developers should be able to"
     start_trail: Start trail
     visit_trail: Visit trail
     subscribe: Subscribe
@@ -247,7 +249,41 @@ en:
   marketing_redesign:
     home:
       show:
+        benefits:
+          heading: What it's like to work with thoughtbot
+          quality: Proven Quality
+          quality_desc: Collaborate with the same team that enchances your expertise over the years.
+          schedule: Customized Schedule
+          schedule_desc: Build a week-by-week schedule catered to your needs and availability.
+          experts: Expert Instructors
+          experts_desc: Dedicated Senior Developer instructors that are leaders in their space.
+          curriculum: Curriculum Based on Your Codebase
+          curriculum_desc: Ensure your team is ready to work at their full potential.
+        classic:
+          heading: Looking for Upcase Classic?
+          cta: View the Archive
+        hero_heading: Activate your team’s potential and achieve more
+        hero_subheading: Custom training for your developers by thoughtbot
+        hero_cta: Let's Get Connected!
+        outcomes:
+          flexibility_heading: Flexibility for your most senior members
+          flexibility_desc: With your entire team upskilled, workloads are much more balanced. Let your visionaries handle bigger picture tasks.
+          heading: What you'll gain
+          collaboration_heading: Better team collaboration
+          collaboration_desc: Developers that can seamlessly implement the vision from product and design.
+          documentation_heading: Documentation & onboarding guides
+          documentation_desc: Materials you can continue to reference forever. Become sustainable in your team growth.
+          velocity_heading: Improved velocity
+          velocity_desc: Without sacrificing quality, your team will be able to deliver more.
         page_title: Upcase by thoughtbot | Learn Web Development Online
+        testimonials:
+          heading: We've helped dozens of teams
+          quotes:
+            patrick_cushing_role: Founder and CEO, WorkHands
+            patrick_cushing_quote:
+              thoughtbot is a best-in-class organization for development and DevOps.
+              <strong>They can level up your team and transform your technical culture for the better.</strong>
+
     about:
       show:
         page_title: About Us

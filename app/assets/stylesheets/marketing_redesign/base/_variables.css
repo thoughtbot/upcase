@@ -101,8 +101,8 @@
   --line-height--tight: 1.2;
 
   /* Border */
-  --border-radius--small: 0.25rem;
-  --border-radius--base: 0.5rem;
+  --border-radius--small: 0.5rem;
+  --border-radius--base: 1rem;
   --border-radius--large: 1.5rem;
   --border-radius--pill: 4rem;
   --border-radius--circle: 100%;
@@ -118,6 +118,7 @@
   /* Layout & Misc */
 
   --container--base: 50rem;
+  --container--medium: 72rem;
   --container--large: 85rem;
 
   --space--xx-small: 0.25rem;
