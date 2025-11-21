@@ -10,6 +10,7 @@
 @import "marketing_redesign/base/_buttons.css";
 @import "marketing_redesign/base/_disclosures.css";
 @import "marketing_redesign/base/_forms.css";
+@import "marketing_redesign/base/_layout.css";
 @import "marketing_redesign/base/_lists.css";
 @import "marketing_redesign/base/_media.css";
 @import "marketing_redesign/base/_tables.css";
@@ -18,6 +19,7 @@
 /* Components */
 /* Import components from the component folder here in ABC order */
 /* For example: @import "marketing_redesign/components/_card.css" */
+@import "marketing_redesign/components/_section.css";
 
 /* Utilities */
 @import "marketing_redesign/utilities/_hide-visually.css";

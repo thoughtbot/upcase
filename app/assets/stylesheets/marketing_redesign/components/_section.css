@@ -1,0 +1,35 @@
+section.section {
+  align-items: center;
+  align-self: stretch;
+  display: grid;
+  flex-direction: column;
+  gap: var(--space--base);
+  grid-template-columns: repeat(12, [col-start] 1fr);
+  padding: var(--space--large) 0;
+}
+
+section.hero .section-title {
+  font-size: var(--font-size--display);
+}
+
+.full {
+  grid-column: col-start / span 12;
+}
+
+.section-header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-subheader {
+  font-size: var(--font-size--subheader);
+}
+
+.section-cta {
+  margin: var(--space--base);
+}
+
+.test {
+  grid-column: col-start 3 / span 3;
+}
