@@ -15,6 +15,10 @@ body {
   font-weight: var(--font-weight--extrabold);
 }
 
+:where(h1, h2, h3, h4) {
+  font-family: var(--font-family--heading);
+}
+
 h1 {
   font-size: var(--font-size--700);
   margin: var(--space--large) 0 var(--space--base);
