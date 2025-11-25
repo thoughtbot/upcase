@@ -11,6 +11,8 @@
     <%= stylesheet_link_tag :marketing_redesign, media: "all" %>
     <%= javascript_include_tag "marketing_redesign" %>
     <%= favicon_link_tag "favicon.ico" %>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Manrope:wght@200..800&display=swap", media: "all" %>
     <% if content_for?(:link_canonical) %>
       <%= content_for(:link_canonical) %>
     <% else %>

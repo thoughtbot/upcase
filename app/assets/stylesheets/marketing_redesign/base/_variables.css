@@ -77,9 +77,8 @@
   --font-size--700: 3.25rem;
   --font-size--800: 4rem;
 
-  --font-size--body: var(--font-size--100);
-  --font-size--small: var(--font-size--50);
-  --font-size--x-small: var(--font-size--10);
+  --font-size--body: var(--font-size--200);
+  --font-size--small: var(--font-size--100);
   --font-size--ui: var(--font-size--100);
   --font-size--section-title: var(--font-size--300);
   --font-size--subheader: var(--font-size--400);
@@ -87,10 +86,10 @@
   --font-size--display: var(--font-size--800);
 
   --font-weight--normal: 400;
-  --font-weight--bold: 500;
+  --font-weight--bold: 600;
   --font-weight--extrabold: 700;
 
-  --font-family--body: "Manrope", system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-family--body: "DM Sans", system-ui, "Segoe UI", Roboto, sans-serif;
   --font-family--heading: "Manrope", system-ui, "Segoe UI", Roboto, sans-serif;
 
   --line-height--base: 1.5;
