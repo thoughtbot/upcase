@@ -1,32 +1,42 @@
 <footer>
-  <%= t("layouts.app_name") %>
-  <%= t("layouts.app_name_subtitle") %>
+  <div>
+    <span class="logo">
+      <%= inline_svg_tag("marketing/upcase-logo--small.svg") %>
+      <%= t("layouts.app_name_subtitle") %>
+    </span>
 
-  <small><%= t("layouts.copyright", current_year: Date.current.year) %></small>
+    <p class="copyright"><%= t("layouts.copyright", current_year: Date.current.year) %></p>
+  </div>
 
-  <%= t(".links_heading") %>
-  <ul>
-    <li>
-      <%= link_to(
-        t(".links.thoughtbot_home"),
-        "https://thoughtbot.com/"
-      ) %>
-    </li>
-  </ul>
+  <nav>
+    <div>
+      <%= t(".links_heading") %>
+      <ul>
+        <li>
+          <%= link_to(
+            t(".links.thoughtbot_home"),
+            "https://thoughtbot.com/"
+          ) %>
+        </li>
+      </ul>
+    </div>
 
-  <%= t(".resources_heading") %>
-  <ul>
-    <li>
-      <%= link_to(
-        t(".links.root_pages_show_privacy"),
-        {controller: "/pages", action: :show, id: "privacy"}
-      ) %>
-    </li>
-    <li>
-      <%= link_to(
-        t(".links.root_pages_show_terms"),
-        {controller: "/pages", action: :show, id: "terms"}
-      ) %>
-    </li>
-  </ul>
+    <div>
+      <%= t(".resources_heading") %>
+      <ul>
+        <li>
+          <%= link_to(
+            t(".links.root_pages_show_privacy"),
+            {controller: "/pages", action: :show, id: "privacy"}
+          ) %>
+        </li>
+        <li>
+          <%= link_to(
+            t(".links.root_pages_show_terms"),
+            {controller: "/pages", action: :show, id: "terms"}
+          ) %>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </footer>

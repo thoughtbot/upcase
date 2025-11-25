@@ -1,6 +1,8 @@
 <header>
-  <%= t("layouts.app_name") %>
-  <%= t("layouts.app_name_subtitle") %>
+  <span class="logo">
+    <%= inline_svg_tag("marketing/upcase-logo--small.svg") %>
+    <%= t("layouts.app_name_subtitle") %>
+  </span>
 
   <nav>
     <ul>
@@ -22,10 +24,11 @@
           {controller: "/marketing", action: :show}
         ) %>
       </li>
-      <li>
+      <li style="margin-left: auto;">
         <%= link_to(
           t(".nav.links.contacts_new"),
-          {controller: "/marketing_redesign/contacts", action: :new}
+          {controller: "/marketing_redesign/contacts", action: :new},
+          class: "button button--secondary"
         ) %>
       </li>
     </ul>
