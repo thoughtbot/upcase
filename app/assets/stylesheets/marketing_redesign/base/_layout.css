@@ -7,3 +7,7 @@ main {
   margin: auto;
   max-width: var(--container--medium);
 }
+
+.grid-full {
+  grid-column: 1 / -1;
+}
