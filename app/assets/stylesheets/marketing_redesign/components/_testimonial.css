@@ -1,3 +1,21 @@
+.testimonial {
+  gap: var(--space--medium) var(--space--base);
+}
+
+.quote-container {
+  display: grid;
+  grid-template-columns: subgrid;
+  background-color: var(--color--background-dark);
+  padding: var(--space--small) var(--space--large);
+  border-radius: var(--border-radius--base);
+}
+
+.quote {
+  grid-column: span 12;
+  order: 0;
+  text-indent: -0.65rem;
+}
+
 .author {
   align-items: center;
   background-color: var(--color--background-dark);
@@ -5,9 +23,10 @@
   display: flex;
   gap: var(--space--base);
   grid-column: span 12;
-  margin-inline-end: 0;
+  margin: auto;
+  max-width: 26rem;
   order: 1;
-  padding: var(--space--large);
+  padding: var(--space--large) 0;
 
   p {
     margin: 0;
@@ -18,13 +37,8 @@
   aspect-ratio: 1;
   background-color: var(--color--accent-base);
   border-radius: var(--border-radius--base);
+  overflow: hidden;
   width: 4.5rem;
-}
-
-.quote {
-  grid-column: span 12;
-  order: 0;
-  text-indent: -0.65rem;
 }
 
 .logo-container {
@@ -33,7 +47,6 @@
   flex-wrap: wrap;
   gap: var(--space--base);
   justify-content: center;
-  order: 2;
 }
 
 .logo {
@@ -43,15 +56,20 @@
 }
 
 @media (min-width: 998px) {
-  .author {
-    grid-column: span 5;
-    margin-inline-end: var(--space--large);
-    order: 0;
+  .quote-container {
+    background: none;
   }
 
   .quote {
     grid-column: span 7;
     order: 1;
+  }
+
+  .author {
+    grid-column: span 5;
+    margin-inline-end: var(--space--large);
+    order: 0;
+    padding: var(--space--large);
   }
 
   .logo-container {

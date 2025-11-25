@@ -1,4 +1,4 @@
-section.section {
+:where(.section) {
   align-items: center;
   display: grid;
   gap: var(--space--base);

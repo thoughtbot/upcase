@@ -280,7 +280,7 @@ en:
           heading: We've helped dozens of teams
           quotes:
             patrick_cushing_role: Founder and CEO, WorkHands
-            patrick_cushing_quote:
+            patrick_cushing_quote_html:
               thoughtbot is a best-in-class organization for development and DevOps.
               <strong>They can level up your team and transform your technical culture for the better.</strong>
 
