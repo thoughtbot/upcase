@@ -4,15 +4,15 @@
       <%= inline_svg_tag "icons/info.svg" %>
     </div>
     <p class="toast-content">
-      Looking to level up a team?<br/>Check out Upcase for Teams.
+      <%= t(".content_html")%>
     </p>
     <div class="toast-cta-container">
       <%= link_to({controller: "/marketing_redesign/home", action: :show}) do %>
-        Go
-       <%= inline_svg_tag "icons/arrow-right.svg" %>
+        <%= t(".cta_go")%>
+        <%= inline_svg_tag "icons/arrow-right.svg" %>
       <% end %>
       <button class="toast-button">
-        Dismiss
+        <%= t(".cta_dismiss")%>
       </button>
     </div>
   </div>

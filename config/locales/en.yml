@@ -117,7 +117,6 @@ en:
       complete-welcome: Dismiss this page (for now)
       headline: Read this to write better code.
       post-welcome-message: All content unlocked. Enjoy!
-
   practice:
     decks:
       decks-list-title: decks
@@ -179,6 +178,10 @@ en:
       multi_user: Team Membership
       single_user: Join Upcase
     upcase: Upcase
+    persistent_toast:
+      content_html: Looking to level up a team?<br/>Check out Upcase for Teams.
+      cta_go: Go
+      cta_dismiss: Dismiss
     content_meta_description: "Explore thoughtbot's video tutorials, exercises,
       and forum discussions on %{name}"
   show:
