@@ -1,0 +1,19 @@
+<% if ActiveModel::Type::Boolean.new.serialize(ENV["ENABLE_MARKETING_REDESIGN"]) %>
+  <div class="persistent-toast">
+    <div class="icon-container">
+      <%= inline_svg_tag "icons/info.svg" %>
+    </div>
+    <p class="toast-content">
+      Looking to level up a team?<br/>Check out Upcase for Teams.
+    </p>
+    <div class="toast-cta-container">
+      <%= link_to({controller: "/marketing_redesign/home", action: :show}) do %>
+        Go
+       <%= inline_svg_tag "icons/arrow-right.svg" %>
+      <% end %>
+      <button class="toast-button">
+        Dismiss
+      </button>
+    </div>
+  </div>
+<% end %>

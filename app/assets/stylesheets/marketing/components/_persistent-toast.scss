@@ -1,0 +1,78 @@
+.persistent-toast {
+  align-items: stretch;
+  background: $info-color;
+  border-radius: 16px;
+  bottom: $base-spacing;
+  box-shadow: 0 12px 12px -6px rgba($black, 0.3), 0 0 1px 0 rgba($black, 0.4);
+  display: flex;
+  left: 50%;
+  max-width: 30rem;
+  overflow: hidden;
+  position: fixed;
+  transform: translateX(-50%);
+  width: 90vw;
+  z-index: 999;
+}
+
+.icon-container {
+  align-items: center;
+  color: #2639c8;
+  display: flex;
+  justify-content: center;
+  padding: $small-spacing;
+}
+
+.toast-content {
+  color: #2639c8;
+  flex: 1;
+  height: 100%;
+  padding: $small-spacing;
+}
+
+.toast-cta-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  a,
+  button {
+    align-items: center;
+    background: $info-color;
+    border: solid 1px $search-snippet-border;
+    border-right: 0;
+    color: #2639c8;
+    display: flex;
+    flex: 1;
+    font-family: $strong-font-family;
+    font-size: 1.25rem;
+    gap: $small-spacing;
+    margin-left: -1px;
+    margin-top: -1px;
+    padding: $small-spacing $base-spacing;
+    transition: $fast-transition;
+
+    &:first-child {
+      border-top: 0;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &:hover {
+      background: $upcase-blue;
+      color: $white;
+    }
+  }
+}
+
+@media screen and (min-width: $small-screen) {
+  .persistent-toast {
+    transform: translateX(0);
+    left: $base-spacing;
+  }
+  .toast-content,
+  .icon-container {
+    padding: $base-spacing;
+  }
+}

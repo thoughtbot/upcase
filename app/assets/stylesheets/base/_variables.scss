@@ -15,6 +15,7 @@ $gray-3: #999;
 $gray-4: #ddd;
 $gray-5: #f3f3f3;
 $hero-green: #4dd1aa;
+$info-color: #ebf3ff;
 $landing-purple-border: #6a5b7d;
 $landing-purple: #341642;
 $light-brown: #eddaa5;
@@ -63,7 +64,7 @@ $topic-backgrounds: (
   rails: #ffecee,
   testing: #e5fdf4,
   vim: #e1f5ff,
-  workflow: #fcf5c8
+  workflow: #fcf5c8,
 );
 $topic-colors: (
   analytics: #a5c236,
@@ -77,11 +78,12 @@ $topic-colors: (
   rails: #d5414d,
   testing: #34d096,
   vim: #2192cf,
-  workflow: #f4bc15
+  workflow: #f4bc15,
 );
 
 // Font families
-$sans-serif: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+$sans-serif: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2",
+  helvetica neue, sans-serif;
 $serif: "adelle-1", "adelle-2", $font-stack-helvetica;
 
 // Font weights
