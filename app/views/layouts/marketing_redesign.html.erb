@@ -24,7 +24,9 @@
   <body class="<%= body_class %>">
     <%= render "layouts/marketing_redesign/header" %>
     <%= render "shared/flashes" %>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
     <%= render "layouts/marketing_redesign/footer" %>
   </body>
 

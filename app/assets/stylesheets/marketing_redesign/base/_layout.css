@@ -2,7 +2,7 @@ body {
   background-color: var(--color--background-base);
 }
 
-body > * {
+main {
   max-width: var(--container--base);
   margin: auto;
 }
