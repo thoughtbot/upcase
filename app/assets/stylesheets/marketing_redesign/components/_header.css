@@ -4,7 +4,7 @@ header {
   font-family: var(--font-family--heading);
   font-size: var(--font-size--ui);
   gap: var(--space--x-large);
-  padding: var(--space--base) max(var(--space--base), (100% - var(--container--large)) / 2);
+  padding: var(--space--base) Max(var(--space--base), (100% - var(--container--large)) / 2);
 
   .logo {
     font-family: var(--font-family--body);

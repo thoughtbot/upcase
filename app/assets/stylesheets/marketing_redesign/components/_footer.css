@@ -3,7 +3,7 @@ footer {
   display: flex;
   font-size: var(--font-size--small);
   gap: var(--space--x-large);
-  padding: var(--space--large) max(var(--space--base), (100% - var(--container--large)) / 2);
+  padding: var(--space--large) Max(var(--space--base), (100% - var(--container--large)) / 2);
 
   .logo {
     font-family: var(--font-family--body);
