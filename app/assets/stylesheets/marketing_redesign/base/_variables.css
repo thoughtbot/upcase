@@ -63,9 +63,9 @@
   --color--text-inverse: var(--color--white-500);
   --color--link: var(--color--primary-base);
   --color--link-hover: var(--color--primary-dark);
-  --color--header-link: var(--color--gray-500);
+  --color--header-link: var(--color--gray-600);
   --color--header-link-hover: var(--color--primary-base);
-  --color--footer-link: var(--color--gray-500);
+  --color--footer-link: var(--color--gray-600);
   --color--footer-link-hover: var(--color--primary-base);
 
   /* Typography */
