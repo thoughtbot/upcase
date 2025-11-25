@@ -297,15 +297,22 @@ en:
     opportunities:
       new:
         attributes:
-          contact_first_name: First name
-          contact_last_name: Last name
+          contact_first_name: First Name
+          contact_last_name: Last Name
           email: Email
-          company_name: Company name
-          contact_job_title: Your role
+          company_name: Company Name
+          contact_job_title: Your Role
         page_title: Contact Us
         section_title: Let’s get to know you and your needs
         section_subtitle: Help us tailor your learning experience.
         submit: Send
+      show:
+        page_title: Contact Us
+        section_title: Let’s get to know you and your needs
+        section_subtitle: Help us tailor your learning experience.
+        form_success_title: Thank you for reaching out!
+        form_success_subtitle: We’ll be in touch as soon as possible with the email you provided
+        cta: Return to Home
     library:
       show:
         page_title: Library

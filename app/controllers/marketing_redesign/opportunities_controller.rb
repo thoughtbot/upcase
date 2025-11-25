@@ -12,9 +12,12 @@ module MarketingRedesign
         conversion_point: HUB_CONVERSION_POINT,
         project_type: HUB_PROJECT_TYPE
       })
-      redirect_back(
-        fallback_location: {action: :new}
+      redirect_to(
+        {action: :show}
       )
+    end
+
+    def show
     end
 
     private

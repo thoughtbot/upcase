@@ -1,0 +1,16 @@
+<%= content_for(:page_title, t(".page_title")) %>
+<section class="section contact-us">
+  <div class="contact-header">
+    <h1><%= t(".section_title") %></h1>
+    <p class="text-lg"><%= t(".section_subtitle") %></p>
+  </div>
+  <div class="success-info">
+    <h4><%= t(".form_success_title") %></h4>
+    <p><%= t(".form_success_subtitle") %></p>
+    <%= link_to(
+          t(".cta"),
+          {controller: "/marketing_redesign/home", action: :show},
+          class: "button button--primary"
+        ) %>
+  </div>
+</section>

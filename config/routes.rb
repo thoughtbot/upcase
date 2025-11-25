@@ -10,10 +10,11 @@ Rails.application.routes.draw do
         get "about-us", controller: :about, action: :show
         resources(
           :opportunities,
-          only: %i[new create],
+          only: %i[new create show],
           path: "contact-us",
           path_names: {
-            new: ""
+            new: "",
+            show: "success",
           }
         )
         if Rails.env.development?
