@@ -69,14 +69,15 @@ fieldset > *:not(:last-child) {
     [type="url"],
     [type="week"]
   ) {
-  background-color: var(--color--background-base);
+  background-color: var(--color--background-light);
   border-radius: var(--border-radius--base);
   color: var(--color--text);
-  padding: var(--space--base);
+  padding: var(--space--medium);
+  width: 100%;
 }
 
-:is(input, select):not(:placeholder-shown) {
-  padding: var(--space--medium) var(--space--base) var(--space--x-small);
+:is(input:not([type="submit"]), select):not(:placeholder-shown) {
+  padding: var(--space--large) var(--space--medium) var(--space--base);
 }
 
 label:has(
@@ -115,7 +116,7 @@ label:has([type="radio"], [type="checkbox"]) {
 label:has(input, select) > span {
   color: var(--color--text);
   font-size: var(--font-size--x-small);
-  left: var(--space--base);
+  left: var(--space--medium);
   opacity: 1;
   pointer-events: none;
   position: absolute;
