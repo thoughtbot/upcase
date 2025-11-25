@@ -20,11 +20,11 @@
   padding: var(--space--large);
   scroll-snap-align: center;
   width: 90%;
-}
 
-.outcome-item h4 {
-  line-height: 1.2;
-  margin: 0;
+  h4 {
+    line-height: 1.2;
+    margin: 0;
+  }
 }
 
 @media (min-width: 998px) {

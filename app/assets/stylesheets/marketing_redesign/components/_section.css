@@ -16,7 +16,7 @@ section.section {
   grid-column: col-start 1 / span 12;
 }
 
-.section-header {
+:where(.section-header) {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -43,9 +43,4 @@ section.section {
 
 .test {
   grid-column: col-start 3 / span 3;
-}
-
-.logo {
-  opacity: 0.8;
-  width: min-content;
 }

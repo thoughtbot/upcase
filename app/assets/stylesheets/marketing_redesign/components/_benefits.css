@@ -7,12 +7,12 @@
   max-width: var(--container--base);
   padding: var(--space--medium);
   width: 100%;
-}
 
-.benefit-item svg {
-  color: var(--color--primary-base);
-}
+  svg {
+    color: var(--color--primary-base);
+  }
 
-.benefit-item :is(h4, p) {
-  margin: 0;
+  :is(h4, p) {
+    margin: 0;
+  }
 }

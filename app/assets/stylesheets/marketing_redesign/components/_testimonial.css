@@ -8,10 +8,10 @@
   margin-inline-end: 0;
   order: 1;
   padding: var(--space--large);
-}
 
-.author p {
-  margin: 0;
+  p {
+    margin: 0;
+  }
 }
 
 .author-avatar {
@@ -36,8 +36,10 @@
   order: 2;
 }
 
-.logo-container img {
+.logo {
+  opacity: 0.8;
   scale: 0.7;
+  width: min-content;
 }
 
 @media (min-width: 998px) {
@@ -57,7 +59,7 @@
     padding: var(--space--x-large);
   }
 
-  .logo-container img {
+  .logo {
     scale: 1;
   }
 }
