@@ -1,0 +1,34 @@
+.outcome-container {
+  align-items: stretch;
+  background-color: var(--color--background-dark);
+  border-radius: var(--border-radius--base);
+  display: flex;
+  flex-direction: row;
+  gap: var(--space--medium);
+  overflow-x: auto;
+  padding: var(--space--x-large);
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+.outcome-item {
+  background-color: var(--color--white-500);
+  border-radius: var(--border-radius--base);
+  flex-shrink: 0;
+  gap: var(--space--x-small);
+  max-width: 22.5rem;
+  padding: var(--space--large);
+  scroll-snap-align: center;
+  width: 90%;
+
+  h4 {
+    line-height: 1.2;
+    margin: 0;
+  }
+}
+
+@media (min-width: 998px) {
+  .outcome-item {
+    flex-shrink: 1;
+  }
+}

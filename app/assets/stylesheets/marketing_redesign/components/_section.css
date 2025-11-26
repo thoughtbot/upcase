@@ -1,10 +1,9 @@
-section.section {
+:where(.section) {
   align-items: center;
-  align-self: stretch;
   display: grid;
-  flex-direction: column;
   gap: var(--space--base);
   grid-template-columns: repeat(12, [col-start] 1fr);
+  justify-content: center;
   padding: var(--space--large) 0;
 }
 
@@ -13,17 +12,28 @@ section.section {
   font-weight: var(--font-weight--bold);
 }
 
-.full {
-  grid-column: col-start / span 12;
+.section > .full {
+  grid-column: col-start 1 / span 12;
 }
 
-.section-header {
+:where(.section-header) {
   align-items: center;
   display: flex;
   flex-direction: column;
+  justify-self: center;
+  line-height: 1.2;
+  max-width: var(--container--medium);
+  text-align: center;
 }
 
-.section-subheader {
+:where(.section-content) {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space--medium);
+}
+
+.section-subtitle {
   font-size: var(--font-size--subheader);
 }
 

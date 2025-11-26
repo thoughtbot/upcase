@@ -1,8 +1,9 @@
 body {
   background-color: var(--color--background-base);
+  padding: 0 var(--space--large);
 }
 
 main {
-  max-width: var(--container--base);
   margin: auto;
+  max-width: var(--container--base);
 }

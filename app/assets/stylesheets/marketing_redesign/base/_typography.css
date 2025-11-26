@@ -13,6 +13,7 @@ body {
 
 :where(h1, h2, h3, h4, strong) {
   font-weight: var(--font-weight--extrabold);
+  letter-spacing: -0.05rem;
 }
 
 :where(h1, h2, h3, h4) {
@@ -42,29 +43,28 @@ h4 {
 }
 
 p {
-  margin: var(--space--small) 0 var(--space--xx-small);
   font-size: var(--font-size--body);
+  margin: var(--space--small) 0 var(--space--xx-small);
 }
 
-p.text-xl {
+:is(p, q).text-xl {
   font-size: var(--font-size--500);
   margin: var(--space--base) 0 var(--space--small);
-  font-weight: var(--font-weight--bold);
 }
 
-p.text-lg {
+:is(p, q).text-lg {
   font-size: var(--font-size--subheader);
   margin: var(--space--small) 0 var(--space--xx-small);
-  font-weight: var(--font-weight--bold);
 }
 
-p.text-sm {
+:is(p, q).text-sm {
   font-size: var(--font-size--small);
   margin: var(--space--xx-small) 0 0;
 }
 
 a {
   color: var(--color--link);
+
   transition: var(--transition-duration--base) color
     var(--transition-timing--base);
 
