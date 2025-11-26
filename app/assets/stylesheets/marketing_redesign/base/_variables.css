@@ -63,6 +63,10 @@
   --color--text-inverse: var(--color--white-500);
   --color--link: var(--color--primary-base);
   --color--link-hover: var(--color--primary-dark);
+  --color--header-link: var(--color--gray-600);
+  --color--header-link-hover: var(--color--primary-base);
+  --color--footer-link: var(--color--gray-600);
+  --color--footer-link-hover: var(--color--primary-base);
 
   /* Typography */
 
@@ -84,6 +88,7 @@
   --font-size--subheader: var(--font-size--400);
   --font-size--header: var(--font-size--600);
   --font-size--display: var(--font-size--800);
+  --font-size--caption: var(--font-size--50);
 
   --font-weight--normal: 400;
   --font-weight--bold: 600;
@@ -108,6 +113,7 @@
   --border--base: var(--border-width--base) solid var(--color--primary-light);
   --border--light: var(--border-width--base) solid var(--color--gray-500);
   --border--dark: var(--border-width--base) solid var(--color--primary-base);
+  --border--footer: var(--border-width--base) solid var(--color--gray-200);
 
   /* Layout & Misc */
 

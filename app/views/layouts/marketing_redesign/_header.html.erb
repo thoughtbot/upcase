@@ -1,6 +1,8 @@
 <header>
-  <%= t("layouts.app_name") %>
-  <%= t("layouts.app_name_subtitle") %>
+  <span class="logo">
+    <%= inline_svg_tag("marketing/upcase-logo--small.svg") %>
+    <%= t("layouts.app_name_subtitle") %>
+  </span>
 
   <nav>
     <ul>
@@ -18,14 +20,19 @@
       </li>
       <li>
         <%= link_to(
-          t(".nav.links.root_marketing_show"),
-          {controller: "/marketing", action: :show}
-        ) %>
+          {controller: "/marketing", action: :show},
+          target: "_blank",
+          rel: "noopener"
+        ) do %>
+          <%= t(".nav.links.root_marketing_show") %>
+          <%= inline_svg_tag("marketing_redesign/new_window.svg", class: "icon--new-window") %>
+        <% end %>
       </li>
-      <li>
+      <li style="margin-left: auto;">
         <%= link_to(
           t(".nav.links.contacts_new"),
-          {controller: "/marketing_redesign/contacts", action: :new}
+          {controller: "/marketing_redesign/contacts", action: :new},
+          class: "button button--secondary"
         ) %>
       </li>
     </ul>

@@ -20,6 +20,8 @@
 /* Import components from the component folder here in ABC order */
 /* For example: @import "marketing_redesign/components/_card.css" */
 @import "marketing_redesign/components/_section.css";
+@import "marketing_redesign/components/_footer.css";
+@import "marketing_redesign/components/_header.css";
 
 /* Utilities */
 @import "marketing_redesign/utilities/_hide-visually.css";
