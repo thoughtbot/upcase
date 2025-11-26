@@ -20,9 +20,13 @@
       </li>
       <li>
         <%= link_to(
-          t(".nav.links.root_marketing_show"),
-          {controller: "/marketing", action: :show}
-        ) %>
+          {controller: "/marketing", action: :show},
+          target: "_blank",
+          rel: "noopener"
+        ) do %>
+          <%= t(".nav.links.root_marketing_show") %>
+          <%= inline_svg_tag("marketing_redesign/new_window.svg", class: "icon--new-window") %>
+        <% end %>
       </li>
       <li style="margin-left: auto;">
         <%= link_to(

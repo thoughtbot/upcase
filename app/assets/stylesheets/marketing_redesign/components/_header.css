@@ -35,7 +35,17 @@ header {
         list-style-type: none;
 
         a {
+          align-items: center;
+          display: flex;
+          gap: var(--space--x-small);
           text-decoration: none;
+
+          .icon--new-window {
+            height: calc(var(--font-size--ui) * (17 / 16));
+            position: relative;
+            top: calc((var(--font-size--ui) * (-1 / 16)) / 2);
+            width: auto;
+          }
         }
       }
     }
