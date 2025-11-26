@@ -8,9 +8,11 @@
       <p class="section-subtitle">
         <%= t("marketing_redesign.home.show.hero_subheading") %>
       </p>
-      <a class="section-cta button button--primary" href="/contact-us">
-        <%= t("marketing_redesign.home.show.hero_cta") %>
-      </a>
+      <%= link_to(
+        t("marketing_redesign.home.show.hero_cta"),
+        {controller: "/marketing_redesign/opportunities", action: :new},
+        class: "section-cta button button--primary"
+      ) %>
     </div>
   </section>
 
