@@ -11,3 +11,13 @@ main {
 .grid-full {
   grid-column: 1 / -1;
 }
+
+@media screen and (max-width: 988px) {
+  main {
+    transition: transform var(--transition-timing--base)
+      var(--transition-duration--base);
+  }
+  header:has(input.menu-toggle:checked) + main {
+    transform: translateX(22rem);
+  }
+}

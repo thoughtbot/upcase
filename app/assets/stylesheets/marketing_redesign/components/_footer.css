@@ -3,8 +3,7 @@ footer {
   display: flex;
   font-size: var(--font-size--small);
   gap: var(--space--medium) var(--space--x-large);
-  padding: var(--space--large)
-    Max(var(--space--base), (100% - var(--container--large)) / 2);
+  padding: var(--space--large) 0;
   flex-direction: column;
 
   .logo {
@@ -50,6 +49,8 @@ footer {
 @media screen and (min-width: 600px) {
   footer {
     flex-direction: row-reverse;
+    padding: var(--space--large)
+      Max(var(--space--base), (100% - var(--container--large)) / 2);
 
     nav {
       justify-content: flex-end;

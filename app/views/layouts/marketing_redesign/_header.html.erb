@@ -1,40 +1,50 @@
 <header>
-  <span class="logo">
-    <%= inline_svg_tag("marketing/upcase-logo--small.svg") %>
-    <%= t("layouts.app_name_subtitle") %>
-  </span>
+  <div class="header-container">
+    <input type="checkbox" name="menu-toggle" id="menu-toggle" class="menu-toggle" aria-label="hamburger" aria-controls="menu" aria-expanded="false" >
+    <label class="menu-toggle" for="menu-toggle" id="hamburger" aria-hidden="true">
+      <%= inline_svg_tag("marketing_redesign/menu.svg") %>
+    </label>
+    <%= link_to(
+      {controller: "/marketing_redesign/home", action: :show},
+      class: "logo"
+      ) do %>
+        <%= inline_svg_tag("marketing/upcase-logo--small.svg") %>
+        <span class="subtitle"><%= t("layouts.app_name_subtitle") %></span>
+    <% end %>
+    <span class="spacer"></span>
 
-  <nav>
-    <ul>
-      <li>
-        <%= link_to(
-          t(".nav.links.root"),
-          {controller: "/marketing_redesign/home", action: :show}
-        ) %>
-      </li>
-      <li>
-        <%= link_to(
-          t(".nav.links.about_show"),
-          {controller: "/marketing_redesign/about", action: :show}
-        ) %>
-      </li>
-      <li>
-        <%= link_to(
-          {controller: "/marketing", action: :show},
-          target: "_blank",
-          rel: "noopener"
-        ) do %>
-          <%= t(".nav.links.root_marketing_show") %>
-          <%= inline_svg_tag("marketing_redesign/new_window.svg", class: "icon--new-window") %>
-        <% end %>
-      </li>
-      <li style="margin-left: auto;">
-        <%= link_to(
-          t(".nav.links.contacts_new"),
-          {controller: "/marketing_redesign/opportunities", action: :new},
-          class: "button button--secondary"
-        ) %>
-      </li>
-    </ul>
-  </nav>
+    <nav>
+      <ul>
+        <li>
+          <%= link_to(
+            t(".nav.links.root"),
+            {controller: "/marketing_redesign/home", action: :show}
+          ) %>
+        </li>
+        <li>
+          <%= link_to(
+            t(".nav.links.about_show"),
+            {controller: "/marketing_redesign/about", action: :show}
+          ) %>
+        </li>
+        <li>
+          <%= link_to(
+            {controller: "/marketing", action: :show},
+            target: "_blank",
+            rel: "noopener"
+          ) do %>
+            <%= t(".nav.links.root_marketing_show") %>
+            <%= inline_svg_tag("marketing_redesign/new_window.svg", class: "icon--new-window") %>
+          <% end %>
+        </li>
+        <li style="margin-left: auto;">
+          <%= link_to(
+            t(".nav.links.contacts_new"),
+            {controller: "/marketing_redesign/opportunities", action: :new},
+            class: "button button--secondary"
+          ) %>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </header>
