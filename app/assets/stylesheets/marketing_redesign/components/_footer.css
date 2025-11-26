@@ -2,8 +2,9 @@ footer {
   border-top: var(--border--footer);
   display: flex;
   font-size: var(--font-size--small);
-  gap: var(--space--x-large);
-  padding: var(--space--large) Max(var(--space--base), (100% - var(--container--large)) / 2);
+  gap: var(--space--medium) var(--space--x-large);
+  padding: var(--space--large) 0;
+  flex-direction: column;
 
   .logo {
     font-family: var(--font-family--body);
@@ -22,8 +23,9 @@ footer {
 
   nav {
     display: flex;
+    justify-content: space-between;
     gap: var(--space--large);
-    margin-left: auto;
+    flex: 1;
 
     ul {
       --color--link: var(--color--footer-link);
@@ -40,6 +42,18 @@ footer {
           text-decoration: none;
         }
       }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  footer {
+    flex-direction: row-reverse;
+    padding: var(--space--large)
+      Max(var(--space--base), (100% - var(--container--large)) / 2);
+
+    nav {
+      justify-content: flex-end;
     }
   }
 }

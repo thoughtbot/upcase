@@ -47,12 +47,12 @@
   flex-wrap: wrap;
   gap: var(--space--base);
   justify-content: center;
-}
 
-.logo {
-  opacity: 0.8;
-  scale: 0.7;
-  width: min-content;
+  .logo {
+    opacity: 0.8;
+    scale: 0.7;
+    width: min-content;
+  }
 }
 
 @media (min-width: 998px) {
@@ -75,9 +75,9 @@
   .logo-container {
     justify-content: space-between;
     padding: var(--space--x-large);
-  }
 
-  .logo {
-    scale: 1;
+    .logo {
+      scale: 1;
+    }
   }
 }
