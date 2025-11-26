@@ -14,7 +14,7 @@ Rails.application.routes.draw do
           path: "contact-us",
           path_names: {
             new: "",
-            show: "success",
+            show: "success"
           }
         )
         if Rails.env.development?
