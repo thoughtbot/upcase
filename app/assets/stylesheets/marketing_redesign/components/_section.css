@@ -79,3 +79,49 @@
     }
   }
 }
+
+.contact-us {
+  gap: var(--space--x-large) var(--space--large);
+  grid-template-columns: 1fr;
+
+  form {
+    width: 100%;
+    gap: var(--space--base);
+  }
+
+  .input-group {
+    display: flex;
+    gap: var(--space--small);
+
+    label {
+      width: 100%;
+    }
+  }
+}
+
+.contact-header {
+  text-align: center;
+
+  h1 {
+    line-height: 1.2;
+  }
+}
+
+.form-header :is(h4, p) {
+  margin: 0;
+}
+
+.success-info {
+  .button {
+    margin-block: var(--space--medium);
+  }
+}
+
+@media screen and (min-width: 998px) {
+  .contact-header {
+    text-align: left;
+  }
+  .contact-us {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

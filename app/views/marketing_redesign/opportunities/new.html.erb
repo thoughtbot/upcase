@@ -1,54 +1,66 @@
 <%= content_for(:page_title, t(".page_title")) %>
+<section class="section contact-us">
+  <div class="contact-header">
+    <h1><%= t(".section_title") %></h1>
+    <p class="text-lg"><%= t(".section_subtitle") %></p>
+  </div>
+  <%= form_with(
+    scope: :opportunity,
+    url: {action: :create},
+    method: :post
+  ) do |f| %>
+    <div class="form-header">
+      <h4>Please fill out your contact info</h4>
+      <p>We'll be in touch as soon as possible</p>
+    </div>
 
-<%= form_with(
-  scope: :opportunity,
-  url: {action: :create},
-  method: :post
-) do |f| %>
-  <%= f.label :contact_first_name do %>
-    <span><%= t(".attributes.contact_first_name") %></span>
-    <%= f.text_field(
-      :contact_first_name,
-      autocomplete: "given-name",
-      placeholder: t(".attributes.contact_first_name")
-    ) %>
+    <div class="input-group">
+      <%= f.label :contact_first_name do %>
+        <span><%= t(".attributes.contact_first_name") %></span>
+        <%= f.text_field(
+          :contact_first_name,
+          autocomplete: "given-name",
+          placeholder: t(".attributes.contact_first_name")
+        ) %>
+      <% end %>
+
+      <%= f.label :contact_last_name do %>
+        <span><%= t(".attributes.contact_last_name") %></span>
+        <%= f.text_field(
+          :contact_last_name,
+          autocomplete: "family-name",
+          placeholder: t(".attributes.contact_last_name")
+        ) %>
+      <% end %>
+    </div>
+
+    <%= f.label :email do %>
+      <span><%= t(".attributes.email") %></span>
+      <%= f.email_field(
+        :email,
+        autocomplete: "email",
+        placeholder: t(".attributes.email")
+      ) %>
+    <% end %>
+
+    <%= f.label :company_name do %>
+      <span><%= t(".attributes.company_name") %></span>
+      <%= f.text_field(
+        :company_name,
+        autocomplete: "organization",
+        placeholder: t(".attributes.company_name")
+      ) %>
+    <% end %>
+
+    <%= f.label :contact_job_title do %>
+      <span><%= t(".attributes.contact_job_title") %></span>
+      <%= f.text_field(
+        :contact_job_title,
+        autocomplete: "organization-title",
+        placeholder: t(".attributes.contact_job_title")
+      ) %>
+    <% end %>
+
+    <%= f.submit t(".submit"), class: "button button--primary"%>
   <% end %>
-
-  <%= f.label :contact_last_name do %>
-    <span><%= t(".attributes.contact_last_name") %></span>
-    <%= f.text_field(
-      :contact_last_name,
-      autocomplete: "family-name",
-      placeholder: t(".attributes.contact_last_name")
-    ) %>
-  <% end %>
-
-  <%= f.label :email do %>
-    <span><%= t(".attributes.email") %></span>
-    <%= f.email_field(
-      :email,
-      autocomplete: "email",
-      placeholder: t(".attributes.email")
-    ) %>
-  <% end %>
-
-  <%= f.label :company_name do %>
-    <span><%= t(".attributes.company_name") %></span>
-    <%= f.text_field(
-      :company_name,
-      autocomplete: "organization",
-      placeholder: t(".attributes.company_name")
-    ) %>
-  <% end %>
-
-  <%= f.label :contact_job_title do %>
-    <span><%= t(".attributes.contact_job_title") %></span>
-    <%= f.text_field(
-      :contact_job_title,
-      autocomplete: "organization-title",
-      placeholder: t(".attributes.contact_job_title")
-    ) %>
-  <% end %>
-
-  <%= f.submit t(".submit") %>
-<% end %>
+</section>
