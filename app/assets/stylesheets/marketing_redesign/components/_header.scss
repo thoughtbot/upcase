@@ -1,4 +1,4 @@
-header {
+header:has(> .header-container) {
   height: 6rem;
 }
 
