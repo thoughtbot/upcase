@@ -8,15 +8,17 @@ Rails.application.routes.draw do
       scope module: :marketing_redesign do
         root controller: :home, action: :show
         get "about-us", controller: :about, action: :show
-        resources(
-          :opportunities,
-          only: %i[new create show],
+        resource(
+          :opportunity,
+          only: %i[new create],
           path: "contact-us",
           path_names: {
             new: "",
             show: "success"
           }
-        )
+        ) do
+          get "success", action: :show
+        end
         if Rails.env.development?
           get "library", controller: :library, action: :show
         end
