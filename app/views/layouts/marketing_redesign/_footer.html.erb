@@ -1,16 +1,7 @@
 <footer>
-  <div>
-    <span class="logo">
-      <%= inline_svg_tag("marketing/upcase-logo--small.svg") %>
-      <%= t("layouts.app_name_subtitle") %>
-    </span>
-
-    <p class="copyright"><%= t("layouts.copyright", current_year: Date.current.year) %></p>
-  </div>
-
   <nav>
     <div>
-      <%= t(".links_heading") %>
+      <strong><%= t(".links_heading") %></strong>
       <ul>
         <li>
           <%= link_to(
@@ -22,7 +13,7 @@
     </div>
 
     <div>
-      <%= t(".resources_heading") %>
+      <strong><%= t(".resources_heading") %></strong>
       <ul>
         <li>
           <%= link_to(
@@ -39,4 +30,12 @@
       </ul>
     </div>
   </nav>
+  <div>
+    <span class="logo">
+      <%= inline_svg_tag("marketing/upcase-logo--small.svg") %>
+      <%= t("layouts.app_name_subtitle") %>
+    </span>
+
+    <p class="copyright"><%= t("layouts.copyright", current_year: Date.current.year) %></p>
+  </div>
 </footer>
