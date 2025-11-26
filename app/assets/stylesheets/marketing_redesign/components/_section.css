@@ -4,7 +4,6 @@
   gap: var(--space--base);
   grid-template-columns: repeat(12, [col-start] 1fr);
   justify-content: center;
-  justify-content: center;
   padding: var(--space--large) 0;
 }
 
