@@ -20,6 +20,7 @@
 //= require fastclick
 //= require readmore
 //= require extended_description
+//= require persistent-toast
 
 $(function() {
   hljs.initHighlightingOnLoad();

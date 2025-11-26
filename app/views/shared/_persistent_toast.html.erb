@@ -1,5 +1,5 @@
 <% if ActiveModel::Type::Boolean.new.serialize(ENV["ENABLE_MARKETING_REDESIGN"]) %>
-  <div class="persistent-toast">
+  <div class="persistent-toast" id="persistent-toast-upcase_for_teams">
     <div class="icon-container">
       <%= inline_svg_tag "icons/info.svg" %>
     </div>
@@ -11,7 +11,7 @@
         <%= t(".cta_go")%>
         <%= inline_svg_tag "icons/arrow-right.svg" %>
       <% end %>
-      <button class="toast-button">
+      <button class="toast-button toast-button-dismiss">
         <%= t(".cta_dismiss")%>
       </button>
     </div>
