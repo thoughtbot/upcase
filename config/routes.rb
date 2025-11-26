@@ -9,7 +9,7 @@ Rails.application.routes.draw do
         root controller: :home, action: :show
         get "about-us", controller: :about, action: :show
         resources(
-          :contacts,
+          :opportunities,
           only: %i[new create],
           path: "contact-us",
           path_names: {

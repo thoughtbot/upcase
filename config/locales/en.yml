@@ -251,9 +251,16 @@ en:
     about:
       show:
         page_title: About Us
-    contacts:
+    opportunities:
       new:
         page_title: Contact Us
+        attributes:
+          contact_first_name: First name
+          contact_last_name: Last name
+          email: Email
+          company_name: Company name
+          contact_job_title: Your role
+        submit: Send
     library:
       show:
         page_title: Library
