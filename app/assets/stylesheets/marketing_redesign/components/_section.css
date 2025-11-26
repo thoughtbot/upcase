@@ -38,9 +38,44 @@
 }
 
 .section-cta {
-  margin: var(--space--base);
+  margin-block: var(--space--base);
 }
 
-.test {
-  grid-column: col-start 3 / span 3;
+.about-us {
+  gap: var(--space--base) var(--space--large);
+  grid-template-columns: 1fr;
+
+  .image-crop {
+    border-radius: var(--border-radius--large);
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      object-position: 65% 25%;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .about-us .image-crop img {
+    height: 20rem;
+  }
+}
+
+@media screen and (min-width: 998px) {
+  .about-us {
+    grid-template-columns: 3fr 2fr;
+
+    .image-crop {
+      order: 2;
+
+      img {
+        height: 100%;
+      }
+    }
+  }
 }

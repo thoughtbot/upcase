@@ -10,12 +10,6 @@
   border-radius: var(--border-radius--base);
 }
 
-.quote {
-  grid-column: span 12;
-  order: 0;
-  text-indent: -0.65rem;
-}
-
 .author {
   align-items: center;
   background-color: var(--color--background-dark);
@@ -39,6 +33,12 @@
   border-radius: var(--border-radius--base);
   overflow: hidden;
   width: 4.5rem;
+}
+
+.quote {
+  grid-column: span 12;
+  order: 0;
+  text-indent: -0.65rem;
 }
 
 .logo-container {

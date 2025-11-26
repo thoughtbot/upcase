@@ -1,9 +1,4 @@
-:where(
-  img,
-  figure,
-  picture,
-  video
-) {
+:where(img, figure, picture, video) {
   display: block;
   height: auto;
   margin: 0;

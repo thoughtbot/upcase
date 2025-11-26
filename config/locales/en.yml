@@ -286,10 +286,14 @@ en:
             patrick_cushing_quote_html:
               thoughtbot is a best-in-class organization for development and DevOps.
               <strong>They can level up your team and transform your technical culture for the better.</strong>
-
     about:
       show:
         page_title: About Us
+        section_title: About Upcase
+        classic_cta: View Upcase Classic
+        content_1: Since 2012, one way we’ve shared thoughtbot expertise is through the learning platform you find yourself on today - Upcase. We’ve helped thousands of developers level up their skills through workshops, videos, flash cards, and coding exercises.
+        content_2: In 2018, Upcase became completely free from a subscription model. Teaching and mentoring is core to our mission and a big part of what keeps us happy in our work here at thoughtbot. It felt right to make Upcase free and allow folks to share and reference it however they’d like.
+        content_3: 2025 marks the archival of the outdated content. We’re calling this Upcase Classic. Moving forward, Upcase for Teams will focus on providing customized upskilling; our talented developers work directly with your team to provide the best learning experience.
     opportunities:
       new:
         page_title: Contact Us
