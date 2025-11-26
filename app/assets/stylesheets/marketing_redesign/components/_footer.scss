@@ -50,7 +50,7 @@ footer {
   footer {
     flex-direction: row-reverse;
     padding: var(--space--large)
-      Max(var(--space--base), (100% - var(--container--large)) / 2);
+      Max(var(--space--base), calc(#{100%} - var(--container--large)) / 2);
 
     nav {
       justify-content: flex-end;

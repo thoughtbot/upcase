@@ -109,7 +109,7 @@ header {
   .header-container {
     gap: var(--space--x-large);
     padding: var(--space--base)
-      Max(var(--space--base), (100% - var(--container--large)) / 2);
+      Max(var(--space--base), calc(#{100%} - var(--container--large)) / 2);
     input[type="checkbox"],
     label.menu-toggle,
     .spacer {
