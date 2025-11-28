@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe ReturnPathFinder do
+RSpec.describe ReturnPathFinder do
   describe "#return_path" do
     it "returns the return path specified in the URL" do
       url = "http://www.example.com?return_to=/some_url"

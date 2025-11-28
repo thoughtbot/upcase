@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "twitter_player_cards/_meta.html.erb" do
+RSpec.describe "twitter_player_cards/_meta.html.erb" do
   it "renders Twitter Player Card meta tags" do
     name = "NBA"
     summary = "Bird steals the ball! Underneath to DJ and he lays it in!!!"

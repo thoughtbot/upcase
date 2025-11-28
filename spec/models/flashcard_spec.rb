@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Flashcard do
+RSpec.describe Flashcard do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:prompt) }
   it { should validate_presence_of(:answer) }

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe RecommendableContent do
+RSpec.describe RecommendableContent do
   it { should belong_to(:recommendable) }
 
   describe "uniqueness criteria" do

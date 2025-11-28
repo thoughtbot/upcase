@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe CompletedTrailsController do
+RSpec.describe CompletedTrailsController do
   it "shows completed trails for current user" do
     completed_trails = double("completed-trails")
     expect(Trail).to receive(:completed_for).and_return(completed_trails)

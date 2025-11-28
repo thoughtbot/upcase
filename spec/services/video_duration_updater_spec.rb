@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe VideoDurationUpdater do
+RSpec.describe VideoDurationUpdater do
   include WistiaApiClientStubs
 
   describe ".update_all_durations" do
@@ -111,6 +111,13 @@ describe VideoDurationUpdater do
         name: "humans present refactoring",
         length_in_minutes: nil
       )
+
+      show_response = {
+        "name" => video.name,
+        "duration" => 4_265 # seconds
+      }
+
+      stub_wistia_api_client(response: show_response)
 
       described_class.update_duration(video)
       video.reload

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user views trail details" do
+RSpec.feature "user views trail details" do
   scenario "sees progress" do
     exercises = [
       create(:exercise, name: "First Exercise"),
@@ -15,7 +15,7 @@ feature "user views trail details" do
       exercises: exercises,
       videos: [video]
     )
-    teacher = create(:user, bio: generate(:bio))
+    teacher = create(:user, :with_bio)
     create(:teacher, user: teacher, video: video)
     user = create(:user)
     exercises.first.statuses.create!(user: user, state: Status::COMPLETE)

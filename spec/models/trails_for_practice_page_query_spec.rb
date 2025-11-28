@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe TrailsForPracticePageQuery do
+RSpec.describe TrailsForPracticePageQuery do
   describe "#each" do
     it "yields only published trails" do
       create(:trail, :published, name: "published-trail")

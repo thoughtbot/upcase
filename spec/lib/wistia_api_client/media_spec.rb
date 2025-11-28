@@ -6,6 +6,13 @@ RSpec.describe WistiaApiClient::Media do
     it "returns a parsed JSON response" do
       media_client = described_class.new
 
+      mock_wistia_api_response_with(
+        uri: "https://api.wistia.com/v1/medias.json?limit=100&page=1",
+        response: {
+          body: {hi: "there"}.to_json
+        }
+      )
+
       result = media_client.list
 
       expect(result).to respond_to :each
@@ -31,5 +38,25 @@ RSpec.describe WistiaApiClient::Media do
       expect(result["type"]).to eq "Video"
       expect(result.keys).to include("name", "duration", "hashed_id")
     end
+  end
+
+  def mock_wistia_api_response_with(uri:, response: {})
+    mock_response = {body: "", headers: {}}.merge(response)
+
+    stub_request(:get, uri)
+      .with(
+        headers: {
+          "Accept" => "*/*",
+          "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+          "Authorization" => "Basic YXBpOmFwaV9rZXk=",
+          "Host" => "api.wistia.com",
+          "User-Agent" => "Ruby"
+        }
+      )
+      .to_return(
+        status: 200,
+        body: mock_response.fetch(:body),
+        headers: mock_response.fetch(:headers)
+      )
   end
 end

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Forum do
+RSpec.describe Forum do
   it "knows the url of the forum" do
     ClimateControl.modify FORUM_URL: "https://forum.example.com" do
       expect(Forum.url).to eq "https://forum.example.com/"

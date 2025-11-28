@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe AttemptsController do
+RSpec.describe AttemptsController do
   include StubCurrentUserHelper
 
   describe "#create" do

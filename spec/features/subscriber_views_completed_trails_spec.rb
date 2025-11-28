@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Completed Trails" do
+RSpec.feature "Completed Trails" do
   scenario "user navigates to completed trails" do
     user = create(:user)
     complete_trail = create_trail_completed_by(user, at: 1.week.ago)

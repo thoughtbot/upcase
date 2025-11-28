@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe WeeklyIterationMailerJob do
+RSpec.describe WeeklyIterationMailerJob do
   it_behaves_like "a Delayed Job that notifies Sentry about errors"
 
   describe "#perform" do

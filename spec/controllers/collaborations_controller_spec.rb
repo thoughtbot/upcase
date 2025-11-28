@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe CollaborationsController do
+RSpec.describe CollaborationsController do
   describe "#create" do
     context "as a user with access to repos" do
       it "redirects to the repository" do

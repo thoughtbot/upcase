@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe MarketingController do
+RSpec.describe MarketingController do
   context "the user is not logged in" do
     it "renders the content of /join, but stays on /" do
       get :show

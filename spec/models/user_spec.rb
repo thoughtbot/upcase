@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe User do
+RSpec.describe User do
   context "associations" do
     it { should belong_to(:team).optional }
     it { should have_many(:attempts).dependent(:destroy) }

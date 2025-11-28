@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe ExerciseTrailsController do
+RSpec.describe ExerciseTrailsController do
   include StubCurrentUserHelper
 
   describe "#show" do

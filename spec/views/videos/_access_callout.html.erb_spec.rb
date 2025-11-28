@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "videos/_access_callout" do
+RSpec.describe "videos/_access_callout" do
   context "when there is a preview available" do
     it "displays the 'preview' message and CTA" do
       video = build_stubbed(:video, :with_preview)

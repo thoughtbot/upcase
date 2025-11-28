@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Test-Driven Rails Resources" do
+RSpec.feature "Test-Driven Rails Resources" do
   scenario "View the resources" do
     visit "/upcase/test-driven-rails-resources"
 

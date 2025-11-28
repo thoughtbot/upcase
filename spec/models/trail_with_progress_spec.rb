@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe TrailWithProgress do
+RSpec.describe TrailWithProgress do
   it "decorates its component" do
     user = double("user")
     trail = build_stubbed(:trail)
