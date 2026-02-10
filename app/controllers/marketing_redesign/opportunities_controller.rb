@@ -10,7 +10,8 @@ module MarketingRedesign
       Hub::Opportunities.create({
         **opportunity_params,
         conversion_point: HUB_CONVERSION_POINT,
-        project_type: HUB_PROJECT_TYPE
+        project_type: HUB_PROJECT_TYPE,
+        inbound: true
       })
       redirect_to(
         {action: :show}

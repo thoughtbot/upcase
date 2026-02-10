@@ -33,6 +33,7 @@ describe MarketingRedesign::OpportunitiesController do
           "email" => "example@example.com",
           "company_name" => "Example Company",
           "contact_job_title" => "Example Job Title",
+          :inbound => true,
           :conversion_point => be_present,
           :project_type => be_present
         })
