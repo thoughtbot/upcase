@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Admin creates a deck" do
+RSpec.feature "Admin creates a deck" do
   scenario "is 404 if not an admin" do
     expect do
       visit new_admin_deck_path(as: create(:user))

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "teams/_team.html.erb" do
+RSpec.describe "teams/_team.html.erb" do
   context "when user is team owner" do
     it "renders link to manage users" do
       team = build_stubbed(:team)

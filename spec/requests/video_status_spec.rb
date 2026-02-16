@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Video status" do
+RSpec.describe "Video status" do
   before { sign_in }
 
   describe "when user started the video" do

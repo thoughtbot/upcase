@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe TopicWithTrails do
+RSpec.describe TopicWithTrails do
   describe "#name" do
     it "finds topic by slug and delegates to it" do
       topic = create(:topic, :explorable)

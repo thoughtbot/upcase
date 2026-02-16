@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe WatchableRailsAdminField do
+RSpec.describe WatchableRailsAdminField do
   context "#associated_collection" do
     it "sorts the delegated value" do
       unsorted = [2, 1, 3]

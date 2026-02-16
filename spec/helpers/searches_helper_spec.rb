@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe SearchesHelper do
+RSpec.describe SearchesHelper do
   describe "#cleaned_search_excerpt" do
     it "removes repeated dashes and pipe characters from provided string" do
       highlight_string = "title ===== ``` hello ``` ----- world ||||| things"

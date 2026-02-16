@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe UserSerializer do
+RSpec.describe UserSerializer do
   include Gravatarify::Helper
 
   it "serializes simple attributes" do

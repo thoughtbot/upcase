@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Team do
+RSpec.describe Team do
   it { should belong_to(:owner).class_name(User) }
   it { should have_many(:users).dependent(:nullify) }
   it { should validate_presence_of(:name) }

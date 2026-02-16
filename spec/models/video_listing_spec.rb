@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe VideoListing do
+RSpec.describe VideoListing do
   describe "#videos_with_status" do
     it "decorates videos with the current users view status" do
       video = create(:video, :published)

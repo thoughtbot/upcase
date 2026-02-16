@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Attempt do
+RSpec.describe Attempt do
   it { should validate_presence_of(:user_id) }
   it { should validate_presence_of(:flashcard_id) }
   it { should validate_presence_of(:confidence) }

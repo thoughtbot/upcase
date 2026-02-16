@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe WeeklyIterationDripMailer do
+RSpec.describe WeeklyIterationDripMailer do
   describe "#weekly_update" do
     it "comes from Ben Orenstein" do
       message = build_message

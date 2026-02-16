@@ -1,7 +1,7 @@
 class Video < ApplicationRecord
   extend FriendlyId
-
   include PgSearch::Model
+
   multisearchable against: [:name, :summary, :notes], if: :search_visible?
 
   belongs_to :watchable, polymorphic: true, optional: true

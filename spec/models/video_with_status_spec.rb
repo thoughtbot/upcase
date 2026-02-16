@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe VideoWithStatus do
+RSpec.describe VideoWithStatus do
   describe "status_class" do
     it "paremterizes the provided status' state" do
       status = double(Status, state: "In Progress")

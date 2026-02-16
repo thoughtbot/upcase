@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe AuthHashService, "#find_or_create_user_from_auth_hash" do
+RSpec.describe AuthHashService, "#find_or_create_user_from_auth_hash" do
   it "creates a user using nickname as a name when name is blank in auth_hash" do
     hash = auth_hash("info" => {"name" => nil,
                                 "email" => "user@example.com",

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe VideosHelper do
+RSpec.describe VideosHelper do
   describe "#topic_slugs" do
     it "returns nil if no related topic found" do
       video = double("video", topics: [])
