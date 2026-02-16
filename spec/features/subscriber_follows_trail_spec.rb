@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user starts a trail" do
+RSpec.feature "user starts a trail" do
   scenario "clicks into exercise" do
     exercises = [
       create(:exercise, name: "First Exercise"),

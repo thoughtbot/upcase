@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe VideoThumbnail do
+RSpec.describe VideoThumbnail do
   context "#url" do
     it "returns the url" do
       wistia_id = double("wista_id")

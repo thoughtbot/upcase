@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "flashcards/show.html" do
+RSpec.describe "flashcards/show.html" do
   it "renders the prompt as markdown" do
     render_flashcard(prompt: "Hey **you** guys")
 
@@ -23,6 +23,6 @@ describe "flashcards/show.html" do
   end
 
   def rendered_content
-    Capybara.string(rendered)
+    Capybara.string(rendered.to_s)
   end
 end

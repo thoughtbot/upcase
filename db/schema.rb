@@ -2,16 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_09_195453) do
-
+ActiveRecord::Schema[7.1].define(version: 2025_11_05_220922) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -389,14 +388,14 @@ ActiveRecord::Schema.define(version: 2020_02_09_195453) do
   add_foreign_key "markers", "videos", on_delete: :cascade
 
   create_view "latest_attempts", sql_definition: <<-SQL
-      SELECT DISTINCT ON (attempts.user_id, attempts.flashcard_id) attempts.id,
-      attempts.confidence,
-      attempts.flashcard_id,
-      attempts.user_id,
-      attempts.created_at,
-      attempts.updated_at
+      SELECT DISTINCT ON (user_id, flashcard_id) id,
+      confidence,
+      flashcard_id,
+      user_id,
+      created_at,
+      updated_at
      FROM attempts
-    ORDER BY attempts.user_id, attempts.flashcard_id, attempts.updated_at DESC;
+    ORDER BY user_id, flashcard_id, updated_at DESC;
   SQL
   create_view "slugs", sql_definition: <<-SQL
       SELECT products.slug,
@@ -405,6 +404,10 @@ ActiveRecord::Schema.define(version: 2020_02_09_195453) do
   UNION ALL
    SELECT trails.slug,
       'Trail'::character varying AS model
-     FROM trails;
+     FROM trails
+  UNION ALL
+   SELECT topics.slug,
+      'Topic'::character varying AS model
+     FROM topics;
   SQL
 end

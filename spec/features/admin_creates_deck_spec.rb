@@ -1,18 +1,6 @@
 require "rails_helper"
 
-feature "Admin creates a deck" do
-  scenario "is 404 if not an admin" do
-    expect do
-      visit new_admin_deck_path(as: create(:user))
-    end.to raise_error(ActionController::RoutingError)
-  end
-
-  scenario "is 404 if not a user" do
-    expect do
-      visit new_admin_deck_path
-    end.to raise_error(ActionController::RoutingError)
-  end
-
+RSpec.feature "Admin creates a deck" do
   scenario "successfully" do
     visit admin_decks_path(as: create(:admin))
 

@@ -1,4 +1,4 @@
-shared_examples "a class inheriting from Product" do
+RSpec.shared_examples "a class inheriting from Product" do
   it { should have_many(:classifications) }
   it { should have_many(:topics).through(:classifications) }
 

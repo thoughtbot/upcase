@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Step do
+RSpec.describe Step do
   it { should belong_to(:completeable) }
   it { should belong_to(:trail) }
   it { should validate_presence_of(:completeable) }

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user views weekly iteration" do
+RSpec.feature "user views weekly iteration" do
   scenario "and sees relevant details on the page" do
     user = create(:user)
     show = create(:show)

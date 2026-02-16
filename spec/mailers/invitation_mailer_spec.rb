@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe InvitationMailer do
+RSpec.describe InvitationMailer do
   describe "#invitation" do
     it "delivers an invitation email" do
       invitation = build_stubbed(:invitation)

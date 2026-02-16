@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe TrailWithProgressQuery do
+RSpec.describe TrailWithProgressQuery do
   describe "#each" do
     it "yields each trail with progress" do
       user = create(:user)

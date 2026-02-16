@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe CompleteableWithProgress do
+RSpec.describe CompleteableWithProgress do
   describe "#name" do
     it "delegates to its completeable" do
       name = "some-name"

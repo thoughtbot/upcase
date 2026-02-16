@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "twitter_player_cards/show.html.erb" do
+RSpec.describe "twitter_player_cards/show.html.erb" do
   it "includes a video source" do
     preview_wistia_id = "abc123"
     video = double("video", preview_wistia_id: preview_wistia_id)

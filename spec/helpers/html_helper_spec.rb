@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe HtmlHelper do
+RSpec.describe HtmlHelper do
   describe "#truncate_html" do
     it "returns the plain text after rendering to markdown" do
       input = "[hello world link](http://example.com)"

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Topic do
+RSpec.describe Topic do
   # Associations
   it { should have_many(:classifications).dependent(:destroy) }
   it { should have_many(:products).through(:classifications) }

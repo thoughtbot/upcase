@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "User edits a team" do
+RSpec.feature "User edits a team" do
   include ActionView::Helpers::NumberHelper
 
   background do

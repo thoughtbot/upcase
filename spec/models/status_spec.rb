@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Status do
+RSpec.describe Status do
   it { should belong_to(:completeable) }
   it { should belong_to(:user) }
 

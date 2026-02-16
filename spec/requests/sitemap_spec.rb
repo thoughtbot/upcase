@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "The sitemap" do
+RSpec.describe "The sitemap" do
   it "responds with an XML sitemap" do
     create(:show, name: Show::THE_WEEKLY_ITERATION)
 

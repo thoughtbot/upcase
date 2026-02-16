@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Remove pending invitations" do
+RSpec.feature "Remove pending invitations" do
   include ActionView::RecordIdentifier
 
   scenario "an owner removes a team member" do

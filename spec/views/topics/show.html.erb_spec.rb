@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "topics/show" do
+RSpec.describe "topics/show" do
   context "when there are published trails" do
     it "renders a section listing the trails" do
       trail_name = "A great trail"

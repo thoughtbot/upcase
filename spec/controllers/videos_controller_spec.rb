@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe VideosController do
+RSpec.describe VideosController do
   include StubCurrentUserHelper
 
   describe "#show" do

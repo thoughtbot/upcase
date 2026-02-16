@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Visitor" do
+RSpec.feature "Visitor" do
   scenario "views Weekly Iteration preview page" do
     show = create(:the_weekly_iteration)
     create(:video, watchable: show)
